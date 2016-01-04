@@ -1,0 +1,10 @@
+/applicationContext.xml
+/com/
+/jdbc.properties
+/job-config.xml
+/log4j.properties
+/mybatis-config.xml
+/struts.properties
+/struts.xml
+/system.properties
+/web_index.properties

@@ -1,0 +1,15 @@
+/.classpath
+/.project
+/.settings/
+/.tern-project
+/Web/
+/applicationContext.xml
+/com/
+/log4j.properties
+/mybatis-config.xml
+/mysql.properties
+/struts.properties
+/struts.xml
+/web_index.properties
+/doc/
+/tomcat/
