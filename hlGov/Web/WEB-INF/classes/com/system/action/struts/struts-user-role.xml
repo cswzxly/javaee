@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="UserRoleAction" namespace="/" extends="base_default">
+		<!-- 用户表 -->
+		<action name="userRolePage" class="com.system.action.UserRoleAction" method="userRolePage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/user/userRole_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+
+        <action name="userRoleList" class="com.system.action.UserRoleAction" method="userRoleList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="addUserRole" class="com.system.action.UserRoleAction" method="addUserRole">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="removeUserRole" class="com.system.action.UserRoleAction" method="removeUserRole">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+	</package>
+</struts>

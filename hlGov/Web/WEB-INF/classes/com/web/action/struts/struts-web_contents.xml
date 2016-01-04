@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="FrontContentsAction" namespace="/web" extends="base_default">
+		
+		<action name="front_queryContentsDetail" class="com.web.action.FrontContentsAction" method="front_queryContentsDetail">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontContents/front_contents_Detail.jsp</result>
+		</action>
+		
+		<action name="front_queryContentsList" class="com.web.action.FrontContentsAction" method="front_queryContentsList">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontContents/front_contents_list.jsp</result>
+		</action>
+		
+		<action name="front_saveOpinionPollInfo" class="com.web.action.FrontContentsAction" method="front_saveOpinionPollInfo">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontContents/front_save_success.jsp</result>
+		</action>
+		
+		<action name="tsjyPage" class="com.web.action.FrontContentsAction" method="tsjyPage">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="tsjyPage">/view/web/frontContents/tsjyPage.jsp</result>
+		</action>
+		<action name="tsjyDetailPage" class="com.web.action.FrontContentsAction" method="tsjyDetailPage">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="tsjyDetailPage">/view/web/frontContents/tsjyDetailPage.jsp</result>
+		</action>
+	</package>
+</struts>

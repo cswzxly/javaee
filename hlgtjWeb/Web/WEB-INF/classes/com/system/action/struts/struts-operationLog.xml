@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="OperationLogAction" namespace="/" extends="base_default">
+		<!--  -->
+		<action name="operationLogPage" class="com.system.action.OperationLogAction" method="operationLogPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/operationLog/operationLog_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+        <action name="operationLogList" class="com.system.action.OperationLogAction" method="operationLogList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="showOperationLog" class="com.system.action.OperationLogAction" method="showOperationLog">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="success">/view/system/operationLog/operationLog_show.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+        </action>
+	</package>
+</struts>

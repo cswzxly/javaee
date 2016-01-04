@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="ModuleAction" namespace="/" extends="base_default">
+		<!-- 用户表 -->
+		<action name="modulePage" class="com.system.action.ModuleAction" method="modulePage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/module/module_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+
+        <action name="moduleList" class="com.system.action.ModuleAction" method="moduleList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveNewModule" class="com.system.action.ModuleAction" method="saveNewModule">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveEditModule" class="com.system.action.ModuleAction" method="saveEditModule">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="deleteModule" class="com.system.action.ModuleAction" method="deleteModule">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+
+        <action name="subModulePage" class="com.system.action.ModuleAction" method="subModulePage">
+        	<interceptor-ref name="userAuthorizationStack" />
+            <result name="success">/view/system/module/subModule_page.jsp</result>
+            <result name="error">/view/system/error.jsp</result>
+        </action>
+	</package>
+</struts>

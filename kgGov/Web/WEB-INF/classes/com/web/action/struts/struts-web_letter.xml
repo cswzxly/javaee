@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="FrontLetterAction" namespace="/web" extends="base_default">
+		
+		<action name="front_letterRight" class="com.web.action.FrontLetterAction" method="front_letterRight">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontLetter/front_letter_right.jsp</result>
+		</action>
+		
+		<action name="front_saveLetter" class="com.web.action.FrontLetterAction" method="front_saveLetter">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontLetter/front_save_success.jsp</result>
+			<result name="error">/view/web/error.jsp</result>
+		</action>
+		
+		<action name="front_replayLetter" class="com.web.action.FrontLetterAction" method="front_replayLetter">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontLetter/front_letter_replay.jsp</result>
+			<result name="error">/view/web/error.jsp</result>
+		</action>
+		
+		<action name="front_queryLetterByNum" class="com.web.action.FrontLetterAction" method="front_queryLetterByNum">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontLetter/front_letter_replay.jsp</result>
+			<result name="error">/view/web/error.jsp</result>
+		</action>
+		
+		<action name="front_queryLetterDetail" class="com.web.action.FrontLetterAction" method="front_queryLetterDetail">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontLetter/front_letter_detail.jsp</result>
+			<result name="error">/view/web/error.jsp</result>
+		</action>
+		
+	</package>
+</struts>

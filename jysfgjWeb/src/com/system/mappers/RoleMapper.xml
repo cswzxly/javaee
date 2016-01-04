@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.RoleMapper">
+
+    <resultMap type="Role" id="Role">
+        <id property="id" column="id"/>
+        <result property="roleName" column="roleName"/>
+        <result property="description" column="description"/>
+        <result property="createTime" column="createTime"/>
+    </resultMap>
+
+    <!-- 查询班级list -->
+    <select id="queryRoleById" parameterType="Role" resultType="Role">
+		SELECT * FROM T_ROLE where id=#{id}
+	</select>
+
+    <select id="queryAllRoleList" resultType="Role">
+        SELECT * FROM T_ROLE order by createTime
+    </select>
+
+    <insert id="insertRole" parameterType="Role">
+		INSERT INTO T_ROLE
+		(roleName,description,createTime)
+		values
+		(#{roleName},#{description},#{createTime})
+	</insert>
+
+    <update id="updateRole" parameterType="Role">
+        UPDATE T_ROLE SET
+        <trim suffixOverrides=",">
+            <if test="roleName!=null">roleName=#{roleName},</if>
+            <if test="description!=null">description=#{description},</if>
+        </trim>
+        <where>id=#{id}</where>
+    </update>
+
+    <delete id="deleteRole" parameterType="Role">
+        delete T_ROLE where id = #{id}
+    </delete>
+
+    <select id="queryUserRoleList" parameterType="Role" resultType="Role">
+        SELECT tr.* from t_role tr,r_user_role ur where tr.id = ur.roleId and ur.userId = #{userId}
+    </select>
+
+    <select id="countRoleByAdmin" resultType="java.lang.Integer">
+        SELECT count(1) FROM t_role r,r_user_role ru
+           where r.id = ru.roleId
+           AND ru.roleId = 1
+           AND ru.userId = #{id}
+    </select>
+</mapper>

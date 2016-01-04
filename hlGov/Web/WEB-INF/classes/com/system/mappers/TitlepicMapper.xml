@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.TitlepicMapper">
+
+	<resultMap type="Titlepic" id="Titlepic">
+		<id property="theID" column="theID" />
+		<result property="name" column="name" />
+		<result property="url" column="url" />
+		<result property="linkUrl" column="linkUrl" />
+    </resultMap>
+
+	<select id="queryAllTitlepicList" resultType="Titlepic">
+        SELECT * FROM T_TITLEPIC order by theID 
+    </select>
+    
+	<insert id="saveNewTitlepic" parameterType="Titlepic" useGeneratedKeys="true" keyProperty="url">
+		insert into T_TITLEPIC
+		(name,url,theDate,userID,linkUrl)
+		values
+		(#{name},#{url},#{theDate},#{userID},#{linkUrl})
+	</insert>
+
+	<update id="saveEditTitlepic" parameterType="Titlepic">
+		update T_TITLEPIC set
+        <trim suffixOverrides=",">
+            <if test="url!=null">url=#{url},</if>
+            <if test="linkUrl!=null">linkUrl=#{linkUrl} ,</if>
+        </trim>
+        where 
+        theID=#{theID}
+	</update>
+	
+	<delete id="deleteTitlepic" parameterType="int">
+        delete T_TITLEPIC where theID = #{theID}
+    </delete>
+
+	<!-- <select id="queryAllTitlepicList" parameterType="Catalog" resultType="Catalog">
+		SELECT * FROM T_CATALOG
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="parentID!=null">parentID=#{parentID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="catalogType!=null">catalogType=#{catalogType} and</if>
+                <if test="url!=null">url=#{url} and</if>
+                <if test="isFirstCatalog!=null">isFirstCatalog=#{isFirstCatalog} and</if>
+                <if test="isUploadPic!=null">isUploadPic=#{isUploadPic} and</if>
+            </where>
+        </trim>
+
+	</select>
+	
+	<select id="queryCatalogListByBean" parameterType="Catalog" resultType="Catalog">
+		SELECT * FROM T_CATALOG
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="parentID!=null">parentID=#{parentID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="catalogType!=null">catalogType=#{catalogType} and</if>
+                <if test="url!=null">url=#{url} and</if>
+                <if test="isFirstCatalog!=null">isFirstCatalog=#{isFirstCatalog} and</if>
+                <if test="isUploadPic!=null">isUploadPic=#{isUploadPic} and</if>
+            </where>
+        </trim>
+	</select>
+
+    
+
+    
+
+    
+
+    
+    
+    <select id="queryTopCatalogList" parameterType="Catalog" resultType="Catalog">
+		SELECT top 6* FROM T_CATALOG
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="parentID!=null">parentID=#{parentID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="catalogType!=null">catalogType=#{catalogType} and</if>
+                <if test="url!=null">url=#{url} and</if>
+                <if test="isFirstCatalog!=null">isFirstCatalog=#{isFirstCatalog} and</if>
+                <if test="isUploadPic!=null">isUploadPic=#{isUploadPic} and</if>
+            </where>
+        </trim>
+	</select> -->
+</mapper>

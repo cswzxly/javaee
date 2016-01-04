@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="SurveyAction" namespace="/" extends="base_default">
+		
+		<action name="surveyPage" class="com.system.action.SurveyAction" method="surveyPage">
+		    <interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/survey/survey_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+		
+		<action name="queryAllSurveyList" class="com.system.action.SurveyAction" method="queryAllSurveyList">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="querySurveyByBean" class="com.system.action.SurveyAction" method="querySurveyByBean">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="saveNewSurvey" class="com.system.action.SurveyAction" method="saveNewSurvey">
+		<interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="saveEditSurvey" class="com.system.action.SurveyAction" method="saveEditSurvey">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="updateSurvey" class="com.system.action.SurveyAction" method="updateSurvey">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="deleteSurvey" class="com.system.action.SurveyAction" method="deleteSurvey">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+
+	</package>
+</struts>

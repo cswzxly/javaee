@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="OpenContentsAction" namespace="/" extends="base_default">
+		<!--  -->
+		<action name="openContentsPage" class="com.system.action.OpenContentsAction" method="openContentsPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/opencontents/open_contents_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+
+        <action name="openContentsList" class="com.system.action.OpenContentsAction" method="openContentsList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="newOpenContentsPage" class="com.system.action.OpenContentsAction" method="newOpenContentsPage">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="list" type="redirectAction">openContentsPage.action</result>
+        	<result name="newOpenContentsPage">/view/system/opencontents/newOpenContentsPage.jsp</result>
+        </action>
+        
+        <action name="saveNewOpenContents" class="com.system.action.OpenContentsAction" method="saveNewOpenContents">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="showOpenTree" class="com.system.action.OpenContentsAction" method="showOpenTree">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+        <action name="showOpenContentsEdit" class="com.system.action.OpenContentsAction" method="showOpenContentsEdit">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="showOpenContentsEdit">/view/system/opencontents/showOpenContentsEdit.jsp</result>
+        </action>
+        <action name="saveEditOpenContents" class="com.system.action.OpenContentsAction" method="saveEditOpenContents">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="deleteOpenContents" class="com.system.action.OpenContentsAction" method="deleteOpenContents">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+	</package>
+</struts>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.LetterMapper">
+
+	<resultMap type="Letter" id="Letter">
+		<id property="theID" column="theID" />
+		<result property="visitePath" column="visitePath" />
+		<result property="acceptNum" column="acceptNum" />
+		<result property="name" column="name" />
+        <result property="sex" column="sex" />
+        <result property="age" column="age" />
+		<result property="politicalType" column="politicalType" />
+        <result property="certType" column="certType" />
+        <result property="certNum" column="certNum" />
+		<result property="occupType" column="occupType" />
+		<result property="workplace" column="workplace" />
+        <result property="phone" column="phone" />
+        <result property="moblePhone" column="moblePhone" />
+		<result property="email" column="email" />
+        <result property="address" column="address" />
+        <result property="postcode" column="postcode" />
+		<result property="theme" column="theme" />
+        <result property="questionType" column="questionType" />
+        <result property="referDept" column="referDept" />
+		<result property="joinNum" column="joinNum" />
+		<result property="detailAddress" column="detailAddress" />
+        <result property="content" column="content" />
+        <result property="uploadFile" column="uploadFile" />
+		<result property="everDo" column="everDo" />
+        <result property="isOpen" column="isOpen" />
+        <result property="flag" column="flag" />
+    </resultMap>
+	
+	<select id="queryLetterList" resultType="Letter">
+		SELECT * FROM T_LETTER order by acceptNum desc
+	</select>
+	
+	<select id="queryLetterByBean" parameterType="int" resultType="Letter">
+        SELECT * FROM T_LETTER where theID=#{theID}
+    </select>
+    
+	<select id="queryLetterLike" parameterType="Letter" resultType="Letter">
+        SELECT * FROM T_LETTER 
+       <trim suffixOverrides="and">
+            <where>
+                <if test="flag!=null">flag=${flag} and</if>
+                <if test="isOpen!=null">isOpen=${isOpen}</if>
+                <if test="status!=null">status=${status}</if>
+            </where> 
+       </trim>       
+    </select>
+    
+	<update id="updateLetter" parameterType="Letter">
+		update T_LETTER set
+        <trim suffixOverrides=",">
+            <if test="replay!=null">replay=#{replay}, </if>
+            <if test="status!=null">status=#{status}, </if>
+            <if test="isOpen!=null">isOpen=#{isOpen}, </if>
+        </trim>
+        <where>theID=#{theID}</where>
+	</update>
+    
+	<!--  -->
+	
+	<!-- 
+	
+	 
+	
+	 
+	
+	 <delete id="deleteSurvey" parameterType="Survey">
+        delete T_SURVEY where theID = #{theID}
+    </delete> -->
+
+</mapper>

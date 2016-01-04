@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontOpinionPollInfoMapper">
+
+	<resultMap type="OpinionPollInfo" id="OpinionPollInfo">
+		<id property="theID" column="theID" />
+		<result property="opinionID" column="opinionID" />
+        <result property="name" column="name" />
+        <result property="createDate" column="createDate" />
+        <result property="phone" column="phone" />
+        <result property="email" column="email"/>
+        <result property="ip" column="ip" />
+        <result property="contents" column="contents" />
+    </resultMap>
+
+
+	<insert id="insertOpinionPollInfo" parameterType="OpinionPollInfo">
+    	<selectKey resultType="int" order="AFTER" keyProperty="theID">
+			SELECT @@IDENTITY AS theID
+		</selectKey>
+		insert into T_OpinionPollInfo
+		(opinionID,name,createDate,phone,email,ip,contents)
+		values
+		(#{opinionID},#{name},#{createDate},#{phone},#{email},#{ip},#{contents})
+	</insert>
+    
+</mapper>

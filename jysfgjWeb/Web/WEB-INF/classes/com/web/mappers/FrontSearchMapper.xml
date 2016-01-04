@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontSearchMapper">
+
+	<resultMap type="SearchVO" id="searchVO">
+		<id property="theID" column="theID" />
+		<result property="catalogID" column="catalogID" />
+		<result property="title" column="title" />
+		<result property="tableName" column="tableName" />
+		<result property="releaseDate" column="releaseDate" />
+    </resultMap>
+
+	<select id="querySearchVOByBean" parameterType="SearchVO" resultType="SearchVO">
+		SELECT * FROM (
+			select t1.theID,t1.catalogID,t1.title,'t_contents' as tableName,t1.releaseDate as releaseDate from t_contents t1 where t1.status='1'
+			union all
+			select t2.theID,t2.catalogID,t2.title,'t_video' as tableName,t2.releaseDate as releaseDate from t_video t2 where t2.status='1'
+			union all
+			select t3.theID,t3.catalogID,t3.title,'zl_contents' as tableName,t3.releaseDate as releaseDate from zl_contents t3 where t3.status='1'
+			union all
+			select t4.theID,t4.catalogID,t4.title,'open_contents' as tableName,t4.releaseDate as releaseDate from open_contents t4 where t4.status='1'
+		) t
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">t.theID=#{theID} and</if>
+                <if test="title!=null">t.title like '%${title}%' and</if>
+            </where>
+        </trim>
+		order by t.releaseDate desc,t.tableName asc
+	</select>
+
+</mapper>

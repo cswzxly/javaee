@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.UserRoleMapper">
+
+	<resultMap type="UserRole" id="UserRole">
+		<id property="id" column="id" />
+		<result property="roleId" column="roleId" />
+		<result property="moduleId" column="moduleId" />
+    </resultMap>
+
+    <insert id="insertUserRole" parameterType="UserRole">
+		INSERT INTO R_USER_ROLE
+		(userId,roleId)
+		values
+		(#{userId},#{roleId})
+	</insert>
+
+
+    <delete id="deleteUserRole" parameterType="UserRole">
+        delete R_USER_ROLE
+        <trim suffixOverrides="and">
+            <where>
+                <if test="userId!=null">userId=#{userId} and</if>
+                <if test="roleId!=null">roleId=#{roleId} and</if>
+            </where>
+        </trim>
+    </delete>
+
+	<delete id="deleteUserRoleByUser" parameterType="User">
+        DELETE R_USER_ROLE where id = #{id}
+    </delete>
+
+    <select id="countByRoleID" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM r_user_role WHERE roleId = #{roleID}
+    </select>
+	
+</mapper>

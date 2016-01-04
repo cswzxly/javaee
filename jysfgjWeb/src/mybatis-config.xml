@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+        <typeAlias alias="User" type="com.system.pojo.User" />
+        <typeAlias alias="Catalog" type="com.system.pojo.Catalog" />
+        <typeAlias alias="Module" type="com.system.pojo.Module" />
+        <typeAlias alias="Role" type="com.system.pojo.Role" />
+        <typeAlias alias="RoleModule" type="com.system.pojo.RoleModule" />
+        <typeAlias alias="Contents" type="com.system.pojo.Contents" />
+        <typeAlias alias="UserRole" type="com.system.pojo.UserRole" />
+        <typeAlias alias="FileInfo" type="com.system.pojo.FileInfo" />
+		<typeAlias alias="ZlCatalog" type="com.system.pojo.ZlCatalog" />
+		<typeAlias alias="ZlContents" type="com.system.pojo.ZlContents" />
+		<typeAlias alias="Titlepic" type="com.system.pojo.Titlepic" />
+		<typeAlias alias="Survey" type="com.system.pojo.Survey" />
+		<typeAlias alias="SurveyInfo" type="com.system.pojo.SurveyInfo" />
+		<typeAlias alias="Letter" type="com.system.pojo.Letter" />
+		<typeAlias alias="Video" type="com.system.pojo.Video" />
+		<typeAlias alias="AllClassBean" type="com.system.bean.AllClassBean" />
+		<typeAlias alias="Links" type="com.system.pojo.Links" />
+		<typeAlias alias="OpenCatalog" type="com.system.pojo.OpenCatalog" />
+		<typeAlias alias="OpenContents" type="com.system.pojo.OpenContents" />
+		<typeAlias alias="SearchVO" type="com.web.pojo.SearchVO" />
+		<typeAlias alias="Option" type="com.system.pojo.Option" />
+		<typeAlias alias="OpinionPoll" type="com.system.pojo.OpinionPoll" />
+		<typeAlias alias="OpinionPollInfo" type="com.system.pojo.OpinionPollInfo" />
+		<typeAlias alias="RoleCatalog" type="com.system.pojo.RoleCatalog" />
+		<typeAlias alias="OperationLog" type="com.system.pojo.OperationLog" />
+		<typeAlias alias="Accrual" type="com.system.pojo.Accrual" />
+	</typeAliases>
+	
+	
+	<plugins>
+	    <!-- com.github.pagehelper为PageHelper类所在包名 -->
+	    <plugin interceptor="com.github.pagehelper.PageHelper">
+	        <property name="dialect" value="sqlserver"/>
+	        <!-- 该参数默认为false -->
+	        <!-- 设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用 -->
+	        <!-- 和startPage中的pageNum效果一样-->
+	        <property name="offsetAsPageNum" value="true"/>
+	        <!-- 该参数默认为false -->
+	        <!-- 设置为true时，使用RowBounds分页会进行count查询 -->
+	        <property name="rowBoundsWithCount" value="true"/>
+	        <!-- 设置为true时，如果pageSize=0或者RowBounds.limit = 0就会查询出全部的结果 -->
+	        <!-- （相当于没有执行分页查询，但是返回结果仍然是Page类型）-->
+	        <property name="pageSizeZero" value="true"/>
+	        <!-- 3.3.0版本可用 - 分页参数合理化，默认false禁用 -->
+	        <!-- 启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页 -->
+	        <!-- 禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据 -->
+	        <property name="reasonable" value="false"/>
+	        <!-- 3.5.0版本可用 - 为了支持startPage(Object params)方法 -->
+	        <!-- 增加了一个`params`参数来配置参数映射，用于从Map或ServletRequest中取值 -->
+	        <!-- 可以配置pageNum,pageSize,count,pageSizeZero,reasonable,不配置映射的用默认值 -->
+	        <!-- 不理解该含义的前提下，不要随便复制该配置 -->
+	        <property name="params" value="pageNum=start;pageSize=limit;"/>
+	    </plugin>
+	</plugins>
+	
+	<mappers>
+        <mapper resource="com/system/mappers/UserMapper.xml" />
+        <mapper resource="com/system/mappers/CatalogMapper.xml" />
+        <mapper resource="com/system/mappers/ModuleMapper.xml" />
+        <mapper resource="com/system/mappers/RoleModuleMapper.xml" />
+        <mapper resource="com/system/mappers/ContentsMapper.xml" />
+        <mapper resource="com/system/mappers/UserRoleMapper.xml" />
+		<mapper resource="com/system/mappers/FileInfoMapper.xml" />
+		<mapper resource="com/system/mappers/ZlCatalogMapper.xml" />
+		<mapper resource="com/system/mappers/ZlContentsMapper.xml" />
+		<mapper resource="com/system/mappers/LetterMapper.xml" />
+		<mapper resource="com/system/mappers/SurveyMapper.xml" />
+		<mapper resource="com/system/mappers/SurveyInfoMapper.xml" />
+		<mapper resource="com/system/mappers/TitlepicMapper.xml" />
+		<mapper resource="com/system/mappers/VideoMapper.xml" />
+		<mapper resource="com/system/mappers/LinksMapper.xml" />
+		<mapper resource="com/system/mappers/OpenCatalogMapper.xml" />
+		<mapper resource="com/system/mappers/OpenContentsMapper.xml" />
+		<mapper resource="com/system/mappers/OptionMapper.xml" />
+		<mapper resource="com/system/mappers/OpinionPollMapper.xml" />
+		<mapper resource="com/system/mappers/OpinionPollInfoMapper.xml" />
+		<mapper resource="com/system/mappers/RoleCatalogMapper.xml" />
+		<mapper resource="com/web/mappers/FrontSearchMapper.xml" />
+		<mapper resource="com/system/mappers/OperationLogMapper.xml" />
+		<mapper resource="com/system/mappers/AccrualMapper.xml" />
+	</mappers>
+	
+</configuration>		

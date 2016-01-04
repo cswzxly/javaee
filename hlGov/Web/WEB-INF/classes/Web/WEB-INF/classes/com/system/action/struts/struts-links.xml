@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="LinksAction" namespace="/" extends="base_default">
+		
+        <action name="newLinksPage" class="com.system.action.LinksAction" method="newLinksPage">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="newLinksPage">/view/system/links/newLinksPage.jsp</result>
+        </action>
+        
+        <action name="saveLinks" class="com.system.action.LinksAction" method="saveLinks">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="success" type="redirect">/contents/contentsPage.action?catalogID=${catalogID}</result>
+        </action>
+        
+        <action name="deleteLinks" class="com.system.action.LinksAction" method="deleteLinks">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+        <action name="showLinksEdit" class="com.system.action.LinksAction" method="showLinksEdit">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="showLinksEdit">/view/system/links/showLinksEdit.jsp</result>
+        </action>
+        
+        <action name="updateLinks" class="com.system.action.LinksAction" method="updateLinks">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="success" type="redirect">/contents/contentsPage.action?catalogID=${catalogID}</result>
+        </action>
+	</package>
+</struts>

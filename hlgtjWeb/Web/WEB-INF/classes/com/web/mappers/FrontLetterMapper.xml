@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontLetterMapper">
+
+	<resultMap type="Letter" id="Letter">
+		<id property="theID" column="theID" />
+		<result property="visitePath" column="visitePath" />
+		<result property="acceptNum" column="acceptNum" />
+		<result property="name" column="name" />
+        <result property="sex" column="sex" />
+        <result property="age" column="age" />
+		<result property="politicalType" column="politicalType" />
+        <result property="certType" column="certType" />
+        <result property="certNum" column="certNum" />
+		<result property="occupType" column="occupType" />
+		<result property="workplace" column="workplace" />
+        <result property="phone" column="phone" />
+        <result property="moblePhone" column="moblePhone" />
+		<result property="email" column="email" />
+        <result property="address" column="address" />
+        <result property="postcode" column="postcode" />
+		<result property="theme" column="theme" />
+        <result property="questionType" column="questionType" />
+        <result property="referDept" column="referDept" />
+		<result property="joinNum" column="joinNum" />
+		<result property="detailAddress" column="detailAddress" />
+        <result property="content" column="content" />
+        <result property="uploadFile" column="uploadFile" />
+		<result property="everDo" column="everDo" />
+        <result property="isOpen" column="isOpen" />
+        <result property="flag" column="flag" />
+        <result property="createDate" column="createDate" />
+        <result property="ipAddress" column="ipAddress" />
+        <result property="count1Star" column="count1Star" />
+        <result property="count2Star" column="count2Star" />
+        <result property="count3Star" column="count3Star" />
+    </resultMap>
+    
+	<select id="front_replayLetter" resultType="Letter" parameterType="Letter">
+		SELECT * FROM T_LETTER 
+		<where>
+		    <trim suffixOverrides="and">
+		        <if test="acceptNum!=null">acceptNum=#{acceptNum} and</if>
+		        <if test="flag!=null">flag=#{flag} and</if>
+		        <if test="isOpen!=null">isOpen=#{isOpen} </if>
+		        <if test="theID!=null">theID=#{theID} </if>
+		    </trim>
+		</where> 
+	</select>
+
+	<insert id="front_saveLetter" parameterType="Letter" ><!-- useGeneratedKeys="true" keyProperty="acceptNum" -->
+		insert into T_LETTER
+		(visitePath,acceptNum,name,sex,age,politicalType,certType,certNum,occupType,workplace,phone,moblePhone,email,address,postcode,theme,questionType,referDept,joinNum,detailAddress,content,uploadFile,everDo,isOpen,flag,status,replay,createDate,ipAddress,count1Star,count2Star,count3Star)
+		values
+		(#{visitePath},#{acceptNum},#{name},#{sex},#{age},#{politicalType},#{certType},#{certNum},#{occupType},#{workplace},#{phone},#{moblePhone},#{email},#{address},#{postcode},#{theme},#{questionType},#{referDept},#{joinNum},#{detailAddress},#{content},#{uploadFile},#{everDo},#{isOpen},#{flag},#{status},#{replay},#{createDate},#{ipAddress},#{count1Star},#{count2Star},#{count3Star})
+	</insert>
+	
+	<update id="front_updateLetter" parameterType="Letter" >
+		update T_LETTER set
+        <trim suffixOverrides=",">
+            <if test="acceptNum!=null">acceptNum=#{acceptNum}, </if>
+            <if test="uploadFile!=null">uploadFile=#{uploadFile}, </if>
+        </trim>
+        <where>theID=#{theID}</where>
+	</update>
+	
+	<!--  -->
+	
+	<!-- <select id="querySurveyByBean" parameterType="int" resultType="Survey">
+        SELECT * FROM T_SURVEY where theID=#{theID}
+    </select>
+	
+	 
+	
+	 <update id="updateSurvey" parameterType="Survey">
+		update T_SURVEY set
+        <trim suffixOverrides=",">
+            <if test="title!=null">title=#{title}, </if>
+            <if test="summary!=null">summary=#{summary}, </if>
+            <if test="beginDate!=null">beginDate=#{beginDate}, </if>
+            <if test="endDate!=null">endDate=#{endDate}, </if>
+            <if test="status!=null">status=#{status}, </if>
+        </trim>
+        <where>theID=#{theID}</where>
+	</update>
+	
+	 <delete id="deleteSurvey" parameterType="Survey">
+        delete T_SURVEY where theID = #{theID}
+    </delete> -->
+
+</mapper>

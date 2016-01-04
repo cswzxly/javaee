@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="LetterAction" namespace="/" extends="base_default">
+		
+		<action name="letterPage" class="com.system.action.LetterAction" method="letterPage">
+		    <interceptor-ref name="userAuthorizationStack" />
+		    <result name="page">/view/system/letter/letter_page.jsp</result>
+		</action>
+		
+		<action name="queryLetterList" class="com.system.action.LetterAction" method="queryLetterList">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+		
+		<action name="queryLetterByBean" class="com.system.action.LetterAction" method="queryLetterByBean">
+		    <interceptor-ref name="userAuthorizationStack" />
+		    <result name="success">/view/system/letter/letter_detail.jsp</result>
+		</action>
+		
+		<action name="queryLetterByLike" class="com.system.action.LetterAction" method="queryLetterByLike">
+		    <interceptor-ref name="userAuthorizationStack" />
+		    <result name="success" type="redirectAction">letterPage.action?flag=${flag}&amp;isOpen=${isOpen}&amp;status=${status}</result>
+		</action>
+		
+		<action name="updateLetter" class="com.system.action.LetterAction" method="updateLetter">
+		    <result name="success" type="redirectAction">letterPage.action</result>
+		</action>
+		
+		<action name="downLoad" class="com.system.action.LetterAction">
+          <result type="stream">
+              <param name="inputName">inputStream</param>
+              <param name="contentDisposition">
+                  attachment;filename="${downloadFileName}"
+              </param>
+              <param name="bufferSize">40960</param>
+          </result>
+          
+          
+        </action>
+		
+	</package>
+</struts>

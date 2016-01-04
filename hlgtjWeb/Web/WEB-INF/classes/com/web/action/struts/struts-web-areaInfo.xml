@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="AreaInfoAction" namespace="/web" extends="base_default">
+		
+        <action name="areaInfoList" class="com.web.action.AreaInfoAction" method="areaInfoList">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="areaInfoList">/view/web/areaInfo/areaInfoList.jsp</result>
+        	<result name="fileInfoList">/view/web/areaInfo/fileInfoList.jsp</result>
+        </action>
+
+        <action name="areaInfoMainList" class="com.web.action.AreaInfoAction" method="areaInfoMainList">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="areaInfoMainList">/view/web/areaInfo/areaInfoMainList.jsp</result>
+        </action>
+
+        <action name="fileInfoMainList" class="com.web.action.AreaInfoAction" method="fileInfoMainList">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="fileInfoMainList">/view/web/areaInfo/fileInfoMainList.jsp</result>
+        </action>
+        
+        <action name="contentsShow" class="com.web.action.AreaInfoAction" method="contentsShow">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="contentsShow">/view/web/areaInfo/contentsShow.jsp</result>
+        </action>
+        
+        <action name="videoShow" class="com.web.action.AreaInfoAction" method="videoShow">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="videoShow">/view/web/areaInfo/videoShow.jsp</result>
+        </action>
+        
+        <action name="areaInfoPage" class="com.web.action.AreaInfoAction" method="areaInfoPage">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="areaInfoPage">/view/web/areaInfo/areaInfoPage.jsp</result>
+        </action>
+       <!-- 资料下载 -->
+      	<action name="download" class="com.web.action.AreaInfoAction" method="download"/>
+        	
+        <action name="areaInfoContents" class="com.web.action.AreaInfoAction" method="areaInfoContents"/>
+        
+        <action name="townPage" class="com.web.action.AreaInfoAction" method="townPage">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="townPage">/view/web/areaInfo/townPage.jsp</result>
+        </action>
+        
+        <action name="townCatalogLeft" class="com.web.action.AreaInfoAction" method="townCatalogLeft">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="left">/view/web/areaInfo/townCatalogLeft.jsp</result>
+        </action>
+        
+        <action name="townContentsList" class="com.web.action.AreaInfoAction" method="townContentsList">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="list">/view/web/areaInfo/townContentsList.jsp</result>
+        </action>
+        
+        <action name="townContentsDetail" class="com.web.action.AreaInfoAction" method="townContentsDetail">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="detail">/view/web/areaInfo/townContentsDetail.jsp</result>
+        </action>
+        
+        <action name="officePage" class="com.web.action.AreaInfoAction" method="officePage">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="officePage">/view/web/areaInfo/officePage.jsp</result>
+        </action>
+        
+        <action name="officeCatalogLeft" class="com.web.action.AreaInfoAction" method="officeCatalogLeft">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="left">/view/web/areaInfo/officeCatalogLeft.jsp</result>
+        </action>
+        
+        <action name="officeContentsList" class="com.web.action.AreaInfoAction" method="townContentsList">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="list">/view/web/areaInfo/townContentsList.jsp</result>
+        </action>
+        
+        <action name="officeContentsDetail" class="com.web.action.AreaInfoAction" method="officeContentsDetail">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="detail">/view/web/areaInfo/officeContentsDetail.jsp</result>
+        </action>
+
+        <action name="sitemapPage" class="com.web.action.AreaInfoAction" method="sitemapPage">
+            <interceptor-ref name="initFrontCatalogStack" />
+            <result name="sitemapPage">/view/web/areaInfo/sitemapPage.jsp</result>
+        </action>
+        
+        <action name="workPage" class="com.web.action.AreaInfoAction" method="workPage">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="workPage">/view/web/areaInfo/work/workPage.jsp</result>
+        </action>
+        
+        <action name="interactPage" class="com.web.action.AreaInfoAction" method="interactPage">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="workPage">/view/web/areaInfo/work/interactPage.jsp</result>
+        </action>
+	</package>
+</struts>

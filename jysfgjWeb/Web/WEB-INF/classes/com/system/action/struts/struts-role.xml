@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="RoleAction" namespace="/" extends="base_default">
+		<!-- 用户表 -->
+		<action name="rolePage" class="com.system.action.RoleAction" method="rolePage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/role/role_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+
+        <action name="roleList" class="com.system.action.RoleAction" method="roleList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveNewRole" class="com.system.action.RoleAction" method="saveNewRole">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveEditRole" class="com.system.action.RoleAction" method="saveEditRole">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="deleteRole" class="com.system.action.RoleAction" method="deleteRole">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+
+	</package>
+</struts>

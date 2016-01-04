@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="IndexAction" namespace="/web" extends="base_default">
+		
+        <action name="index" class="com.web.action.IndexAction" method="index">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="index">/view/web/index.jsp</result>
+        </action>
+      
+      	<action name="searchList" class="com.web.action.IndexAction" method="searchList">
+      		<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="searchList">/view/web/searchList.jsp</result>
+        </action>
+        
+        <action name="servicesList" class="com.web.action.IndexAction" method="servicesList">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="servicesList">/view/web/servicesList.jsp</result>
+        </action>
+        
+        <action name="searchShow" class="com.web.action.IndexAction" method="searchShow">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        	<result name="searchContentsShow">/view/web/searchContentsShow.jsp</result>
+        	<result name="searchVideoShow">/view/web/searchVideoShow.jsp</result>
+        </action>
+        <action name="queryUrlById" class="com.web.action.IndexAction" method="queryUrlById">
+        	<interceptor-ref name="initFrontCatalogStack" />
+        </action>
+	</package>
+</struts>

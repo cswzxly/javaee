@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.ModuleMapper">
+
+	<resultMap type="Module" id="Module">
+		<id property="id" column="id" />
+        <id property="pid" column="pid" />
+        <id property="moduleCode" column="moduleCode" />
+        <id property="moduleName" column="moduleName" />
+        <id property="moduleUrl" column="moduleUrl" />
+        <id property="moduleLevel" column="moduleLevel" />
+        <id property="createTime" column="createTime" />
+        <id property="createTime" column="createTime" />
+    </resultMap>
+
+
+	<select id="queryModuleListByBean" parameterType="Module" resultType="Module">
+		SELECT * FROM T_MODULE
+        <trim suffixOverrides="and">
+            <where>
+                <if test="id!=null">id=#{id} and</if>
+                <if test="pid!=null">pid=#{pid} and</if>
+                <if test="moduleCode!=null">moduleCode =#{moduleCode} and</if>
+                <if test="moduleName!=null">moduleName =#{moduleName} and</if>
+                <if test="moduleUrl!=null">moduleUrl  =#{moduleUrl} and</if>
+                <if test="moduleLevel!=null">moduleLevel=#{moduleLevel} and</if>
+                <if test="createTime!=null">createTime =#{createTime} and</if>
+            </where>
+        </trim>
+	</select>
+
+    <select id="queryModuleListById" parameterType="Module" resultType="Module">
+        SELECT * FROM T_MODULE where id=#{id}
+    </select>
+
+    <insert id="insertModule" parameterType="Module">
+		insert into T_Module
+		(pid,moduleCode,moduleName,moduleUrl,moduleLevel,createTime)
+		values
+		(#{pid},#{moduleCode},#{moduleName},#{moduleUrl},#{moduleLevel},#{createTime})
+	</insert>
+
+    <update id="updateModule" parameterType="Module">
+		update T_MODULE set
+        <trim suffixOverrides=",">
+            <if test="moduleCode!=null">moduleCode=#{moduleCode}, </if>
+            <if test="moduleName!=null">moduleName=#{moduleName}, </if>
+            <if test="moduleName!=null">moduleUrl=#{moduleUrl}, </if>
+        </trim>
+        <where>id=#{id}</where>
+	</update>
+
+    <delete id="deleteModule" parameterType="Module">
+        delete T_MODULE where id = #{id}
+    </delete>
+
+
+    <select id="queryRoleModule" parameterType="Module" resultType="Module">
+        SELECT tm.* from t_module tm,t_role tr,r_role_module rm
+        where tm.id = rm.moduleId and tr.id = rm.roleId and tr.id = #{roleId}
+        and tm.moduleLevel = #{moduleLevel}
+        <if test="pid!=null">and tm.pid =#{pid}</if>
+    </select>
+
+    <select id="queryUserModule" parameterType="Module" resultType="Module">
+        select distinct m.* from r_user_role ur,t_role r,t_module m,r_role_module rm
+        where ur.roleId = r.id and rm.roleId = r.id
+        and rm.moduleId = m.id and ur.userId = #{userId}
+    </select>
+</mapper>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.OptionMapper">
+
+	<resultMap type="Option" id="option">
+		<id property="theID" column="theID" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+		<result property="item" column="item" />
+		<result property="code" column="code" />
+		<result property="content" column="content" />
+		<result property="mark" column="mark" />
+        <result property="sort" column="sort" />
+    </resultMap>
+
+
+
+	<select id="queryOptionByBean" parameterType="Option" resultType="Option">
+		SELECT * FROM base_Option
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="createTime!=null">createTime=#{createTime} and</if>
+                <if test="updateTime!=null">updateTime=#{updateTime} and</if>
+                <if test="item!=null">item=#{item} and</if>
+                <if test="code!=null">code=#{code} and</if>
+                <if test="content!=null">content=#{content} and</if>
+                <if test="mark!=null">mark=#{mark} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+            </where>
+        </trim>
+
+	</select>
+	
+	<select id="queryOptionListByBean" parameterType="Option" resultType="Option">
+		SELECT * FROM base_Option
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="createTime!=null">createTime=#{createTime} and</if>
+                <if test="updateTime!=null">updateTime=#{updateTime} and</if>
+                <if test="item!=null">item=#{item} and</if>
+                <if test="code!=null">code=#{code} and</if>
+                <if test="content!=null">content=#{content} and</if>
+                <if test="mark!=null">mark=#{mark} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+            </where>
+        </trim>
+	</select>
+
+    <select id="queryAllOptionList" resultType="Option">
+        SELECT * FROM base_Option order by sort 
+    </select>
+
+    <insert id="insertOption" parameterType="Option">
+		insert into base_Option
+		(createTime,updateTime,item,code,content,mark,sort)
+		values
+		(#{createTime},#{updateTime},#{item},#{code},#{content},#{mark},#{sort})
+	</insert>
+
+    <update id="updateOption" parameterType="Option">
+		update base_Option set
+        <trim suffixOverrides=",">
+            <if test="createTime!=null">createTime=#{createTime},</if>
+            <if test="updateTime!=null">updateTime=#{updateTime},</if>
+            <if test="item!=null">item=#{item},</if>
+            <if test="code!=null">code=#{code},</if>
+            <if test="content!=null">content=#{content},</if>
+            <if test="mark!=null">mark=#{mark},</if>
+            <if test="sort!=null">sort=#{sort},</if>
+        </trim>
+        <where>theID=#{theID}</where>
+	</update>
+
+    <delete id="deleteOption" parameterType="Option">
+        delete base_Option where theID = #{theID}
+    </delete>
+    
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.RoleModuleMapper">
+
+	<resultMap type="RoleModule" id="RoleModule">
+		<id property="id" column="id" />
+		<result property="roleId" column="roleId" />
+		<result property="moduleId" column="moduleId" />
+    </resultMap>
+
+    <insert id="insertRoleModule" parameterType="RoleModule">
+		INSERT INTO R_ROLE_MODULE
+		(roleId,moduleId)
+		values
+		(#{roleId},#{moduleId})
+	</insert>
+
+
+    <delete id="deleteRoleModule" parameterType="RoleModule">
+        delete R_ROLE_MODULE
+        <trim suffixOverrides="and">
+            <where>
+                <if test="roleId!=null">roleId=#{roleId} and</if>
+                <if test="moduleId!=null">moduleId=#{moduleId} and</if>
+            </where>
+        </trim>
+    </delete>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM r_role_module
+        <trim suffixOverrides="and">
+            <where>
+                <if test="roleId!=null">roleId=#{roleId} and</if>
+                <if test="moduleId!=null">moduleId=#{moduleId} and</if>
+            </where>
+        </trim>
+    </select>
+
+
+</mapper>

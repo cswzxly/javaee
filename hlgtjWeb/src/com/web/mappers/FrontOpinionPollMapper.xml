@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontOpinionPollMapper">
+
+	<resultMap type="OpinionPoll" id="OpinionPoll">
+		<id property="theID" column="theID" />
+		<result property="userID" column="userID" />
+		<result property="title" column="title" />		
+        <result property="summary" column="summary" />
+        <result property="createDate" column="createDate" />
+        <result property="begindate" column="beginDate" />
+        <result property="endDate" column="endDate"/>
+        <result property="status" column="status" />
+        <result property="isCollect" column="isCollect" />
+        <result property="catalogID" column="catalogID" />
+    </resultMap>
+
+
+	<select id="queryOpinionPollListByBean" parameterType="OpinionPoll" resultType="OpinionPoll">
+		SELECT * FROM T_OpinionPoll
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="userID!=null">userID=#{userID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="summary!=null">summary=#{summary} and</if>
+                <if test="createDate!=null">createDate=#{createDate} and</if>
+                <if test="beginDate!=null">beginDate=#{beginDate} and</if>
+                <if test="endDate!=null">endDate=#{endDate} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="isCollect!=null">isCollect=#{isCollect} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="passDate!=null">endDate &lt; #{passDate} and</if>
+                <if test="nowDate!=null">endDate &gt; #{nowDate} and</if>
+            </where>
+        </trim>
+		order by theID desc
+	</select>
+	
+    <select id="queryOpinionPollByBean" parameterType="OpinionPoll" resultType="OpinionPoll">
+		SELECT * FROM T_OpinionPoll
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="userID!=null">userID=#{userID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="summary!=null">summary=#{summary} and</if>
+                <if test="createDate!=null">createDate=#{createDate} and</if>
+                <if test="beginDate!=null">beginDate=#{beginDate} and</if>
+                <if test="endDate!=null">endDate=#{endDate} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="isCollect!=null">isCollect=#{isCollect} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+            </where>
+        </trim>
+	</select>
+</mapper>

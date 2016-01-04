@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.RoleCatalogMapper">
+
+	<resultMap type="RoleCatalog" id="RoleModule">
+		<id property="id" column="id" />
+		<result property="roleId" column="roleId" />
+		<result property="catalogId" column="catalogId" />
+    </resultMap>
+
+    <insert id="insertRoleCatalog" parameterType="RoleModule">
+		INSERT INTO R_ROLE_CATALOG
+		(roleId,catalogId)
+		values
+		(#{roleId},#{catalogId})
+	</insert>
+
+    <delete id="deleteRoleCatalog" parameterType="RoleModule">
+        delete R_ROLE_CATALOG
+        <trim suffixOverrides="and">
+            <where>
+                <if test="roleId!=null">roleId=#{roleId} and</if>
+                <if test="catalogId!=null">catalogId=#{catalogId} and</if>
+            </where>
+        </trim>
+    </delete>
+
+    <delete id="deleteByRoleID" parameterType="integer">
+        delete R_ROLE_CATALOG
+        where roleId = #{roleID}
+    </delete>
+
+</mapper>

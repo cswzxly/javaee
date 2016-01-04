@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="TitlepicAction" namespace="/" extends="base_default">
+		<!--  -->
+		<action name="titlepicPage" class="com.system.action.TitlepicAction" method="titlepicPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/titlepic/titlepic_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+		
+		<action name="queryAllTitlepicList" class="com.system.action.TitlepicAction" method="queryAllTitlepicList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+		<action name="saveNewTitlepic" class="com.system.action.TitlepicAction" method="saveNewTitlepic">
+		    <result name="success" type="redirectAction">titlepicPage.action</result>
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+		<action name="saveEditTitlepic" class="com.system.action.TitlepicAction" method="saveEditTitlepic">
+		    <result name="success" type="redirectAction">titlepicPage.action</result>
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+		<action name="deleteTitlepic" class="com.system.action.TitlepicAction" method="deleteTitlepic">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+		
+        
+		<!-- 
+
+        
+        
+        
+        <action name="saveEditCatalog" class="com.system.action.CatalogAction" method="saveEditCatalog">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+		<action name="uploader" class="com.system.action.CatalogAction" method="uploader">
+			<interceptor-ref name="userAuthorizationStack" />
+		</action> -->
+	</package>
+</struts>

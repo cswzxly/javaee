@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontAccrualMapper">
+
+	<resultMap type="Accrual" id="accrual">
+		<id property="theID" column="theID" />
+		<result property="catalogID" column="catalogID" />
+		<result property="title" column="title" />		
+        <result property="contents" column="contents" />
+        <result property="creater_pid" column="creater_pid" />
+        <result property="create_date" column="create_date" />
+        <result property="update_pid" column="update_pid" />
+        <result property="update_date" column="update_date" />
+        <result property="status" column="status" />
+        <result property="sort" column="sort" />
+        <result property="releaseDate" column="releaseDate"/>
+        
+        <result property="accrualType" column="accrualType" />
+        <result property="remark" column="remark" />
+        <result property="approvalObject" column="approvalObject"/>
+        <result property="approvalDept" column="approvalDept"/>
+        
+        <result property="punishType" column="punishType" />
+        <result property="compulsoryMeasures" column="compulsoryMeasures"/>
+        
+        <result property="levyStandard" column="levyStandard" />
+        <result property="pid" column="pid" />
+    </resultMap>
+
+
+	<select id="queryOneAccrualById" parameterType="java.lang.Integer" resultType="Accrual">
+		SELECT * FROM t_accrual where theID=#{theID}
+	</select>
+	
+	<select id="queryAccrualListByBean" parameterType="Accrual" resultType="Accrual">
+		SELECT * FROM t_accrual
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="pid!=null">pid=#{pid} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="creater_pid!=null">creater_pid=#{creater_pid} and</if>
+                <if test="create_date!=null">create_date=#{create_date} and</if>
+                <if test="update_pid!=null">update_pid=#{update_pid} and</if>
+                <if test="update_date!=null">update_date=#{update_date} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+                <if test="accrualType!=null">accrualType=#{accrualType} and</if>
+                <if test="contents!=null">contents=#{contents} and</if>
+                <if test="remark!=null">remark=#{remark} and</if>
+                <if test="approvalObject!=null">approvalObject=#{approvalObject} and</if>
+                <if test="approvalDept!=null">approvalDept=#{approvalDept} and</if>
+                <if test="punishType!=null">punishType=#{punishType} and</if>
+                <if test="compulsoryMeasures!=null">compulsoryMeasures=#{compulsoryMeasures} and</if>
+                <if test="levyStandard!=null">levyStandard=#{levyStandard} and</if>
+            </where>
+        </trim>
+        order by theID asc
+	</select>
+
+
+    <insert id="insertAccrual" parameterType="Accrual">
+    	<selectKey resultType="int" order="AFTER" keyProperty="theID">
+			SELECT @@IDENTITY AS theID
+		</selectKey>
+		insert into t_accrual
+		(catalogID,title,contents,creater_pid,create_date,status,sort,releaseDate,remark,accrualType,approvalObject,approvalDept,punishType,compulsoryMeasures,levyStandard,pid)
+		values
+		(#{catalogID},#{title},#{contents},#{creater_pid},#{create_date},#{status},#{sort},#{releaseDate},#{remark},#{accrualType},#{approvalObject},#{approvalDept},#{punishType},#{compulsoryMeasures},#{levyStandard},#{pid})
+	</insert>
+
+    <update id="updateAccrual" parameterType="Accrual">
+		update t_accrual set
+        <trim suffixOverrides=",">
+        		<if test="pid!=null">pid=#{pid} ,</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} ,</if>
+                <if test="title!=null">title=#{title} ,</if>
+                <if test="creater_pid!=null">creater_pid=#{creater_pid} ,</if>
+                <if test="create_date!=null">create_date=#{create_date} ,</if>
+                <if test="update_pid!=null">update_pid=#{update_pid} ,</if>
+                <if test="update_date!=null">update_date=#{update_date} ,</if>
+                <if test="status!=null">status=#{status} ,</if>
+                <if test="sort!=null">sort=#{sort} ,</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} ,</if>
+                <if test="accrualType!=null">accrualType=#{accrualType} ,</if>
+                <if test="contents!=null">contents=#{contents} ,</if>
+                <if test="remark!=null">remark=#{remark} ,</if>
+                <if test="approvalObject!=null">approvalObject=#{approvalObject} ,</if>
+                <if test="approvalDept!=null">approvalDept=#{approvalDept} ,</if>
+                <if test="punishType!=null">punishType=#{punishType} ,</if>
+                <if test="compulsoryMeasures!=null">compulsoryMeasures=#{compulsoryMeasures} ,</if>
+                <if test="levyStandard!=null">levyStandard=#{levyStandard} ,</if>
+        </trim>
+        <where>theID=#{theID}</where>
+	</update>
+
+    <delete id="deleteAccrual" parameterType="Accrual">
+        delete t_accrual where theID = #{theID}
+    </delete>
+    
+    <select id="getAccrualListByBean" parameterType="AllClassBean" resultType="AllClassBean">
+        SELECT theID, title, catalogID, releaseDate, status, accrualType FROM t_accrual
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="pid!=null">pid=#{pid} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+                <if test="accrualType!=null">accrualType=#{accrualType} and</if>
+            </where>
+        </trim>
+        order by releaseDate desc
+    </select>
+	
+	 <select id="countAccrualByBean" parameterType="Accrual" resultType="Integer">
+        SELECT count(*) FROM t_accrual 
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="pid!=null">pid=#{pid} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="creater_pid!=null">creater_pid=#{creater_pid} and</if>
+                <if test="create_date!=null">create_date=#{create_date} and</if>
+                <if test="update_pid!=null">update_pid=#{update_pid} and</if>
+                <if test="update_date!=null">update_date=#{update_date} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+                <if test="accrualType!=null">accrualType=#{accrualType} and</if>
+                <if test="contents!=null">contents=#{contents} and</if>
+                <if test="remark!=null">remark=#{remark} and</if>
+                <if test="approvalObject!=null">approvalObject=#{approvalObject} and</if>
+                <if test="approvalDept!=null">approvalDept=#{approvalDept} and</if>
+                <if test="punishType!=null">punishType=#{punishType} and</if>
+                <if test="compulsoryMeasures!=null">compulsoryMeasures=#{compulsoryMeasures} and</if>
+                <if test="levyStandard!=null">levyStandard=#{levyStandard} and</if>
+            </where>
+        </trim>
+    </select>
+    
+    <delete id="batchDeleteAccrual" parameterType="string">
+        delete t_accrual where theID in (${value})
+    </delete>
+    
+    <select id="getAccrualListByPid" parameterType="java.lang.Integer" resultType="Accrual">
+        SELECT * FROM t_accrual where pid = #{pid} order by theID
+    </select>
+</mapper>

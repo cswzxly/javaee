@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="FrontZlCatalogAction" namespace="/web" extends="base_default">
+		<!--  -->
+		<action name="frontZlCatalogLeft" class="com.web.action.FrontZlCatalogAction" method="frontZlCatalogLeft">
+			<interceptor-ref name="initFrontCatalogStack" />
+			<result name="success">/view/web/frontArea/front_catalog_left.jsp</result>
+			<result name="error">/view/web/error.jsp</result>
+		</action>
+		
+		<action name="frontZlCatalogPage" class="com.web.action.FrontZlCatalogAction" method="frontZlCatalogPage">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontArea/front_zl.jsp</result>
+		    <result name="error">/view/web/error.jsp</result>
+		</action>
+		
+	</package>
+</struts>

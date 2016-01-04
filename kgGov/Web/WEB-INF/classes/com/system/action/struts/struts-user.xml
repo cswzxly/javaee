@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="UserAction" namespace="/" extends="base_default">
+		
+		<!-- 用户表 -->
+		<action name="userPage" class="com.system.action.UserAction" method="userPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/user/user_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+
+        <action name="userList" class="com.system.action.UserAction" method="userList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="checkExist" class="com.system.action.UserAction" method="checkExist">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveNewUser" class="com.system.action.UserAction" method="saveNewUser">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveEditUser" class="com.system.action.UserAction" method="saveEditUser">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="deleteUser" class="com.system.action.UserAction" method="deleteUser">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+
+	</package>
+</struts>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontOpenCatalogMapper">
+
+	<resultMap type="OpenCatalog" id="OpenCatalog">
+		<id property="theID" column="theID" />
+		<result property="parentID" column="parentID" />
+		<result property="title" column="title" />
+		<result property="status" column="status" />
+        <result property="sort" column="sort" />
+        <result property="catalogType" column="catalogType" />
+        <result property="url" column="url" />
+        <result property="isFirstCatalog" column="isFirstCatalog" />
+        <result property="isUploadPic" column="isUploadPic" />
+    </resultMap>
+
+	<select id="queryOpenCatalogByBean" parameterType="int" resultType="OpenCatalog">
+		SELECT * FROM OPEN_CATALOG
+       where theID = #{theID}       
+	</select>
+	
+	<select id="queryOpenCatalogList" parameterType="OpenCatalog" resultType="OpenCatalog">
+		SELECT * FROM OPEN_CATALOG
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="parentID!=null">parentID=#{parentID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="catalogType!=null">catalogType=#{catalogType} and</if>
+                <if test="url!=null">url=#{url} and</if>
+                <if test="isFirstCatalog!=null">isFirstCatalog=#{isFirstCatalog} and</if>
+                <if test="isUploadPic!=null">isUploadPic=#{isUploadPic} and</if>
+            </where>
+        </trim>
+        order by sort asc 
+	</select>
+	
+	<select id="queryTopOpenCatalogList" parameterType="OpenCatalog" resultType="OpenCatalog">
+		SELECT TOP ${topNum}* FROM OPEN_CATALOG
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="parentID!=null">parentID=#{parentID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="catalogType!=null">catalogType=#{catalogType} and</if>
+                <if test="url!=null">url=#{url} and</if>
+                <if test="isFirstCatalog!=null">isFirstCatalog=#{isFirstCatalog} and</if>
+                <if test="isUploadPic!=null">isUploadPic=#{isUploadPic} and</if>
+            </where>
+        </trim>
+        order by sort asc
+	</select>
+	
+
+<!-- 
+	
+	
+	
+ -->
+</mapper>

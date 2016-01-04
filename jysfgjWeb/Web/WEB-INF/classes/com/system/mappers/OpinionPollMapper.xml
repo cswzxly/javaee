@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.OpinionPollMapper">
+
+	<resultMap type="OpinionPoll" id="OpinionPoll">
+		<id property="theID" column="theID" />
+		<result property="userID" column="userID" />
+		<result property="title" column="title" />		
+        <result property="summary" column="summary" />
+        <result property="createDate" column="createDate" />
+        <result property="begindate" column="beginDate" />
+        <result property="endDate" column="endDate"/>
+        <result property="status" column="status" />
+        <result property="isCollect" column="isCollect" />
+        <result property="releaseDate" column="releaseDate" />
+    </resultMap>
+
+
+	<select id="queryOpinionPollByBean" parameterType="OpinionPoll" resultType="OpinionPoll">
+		SELECT * FROM T_OpinionPoll
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="userID!=null">userID=#{userID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="summary!=null">summary=#{summary} and</if>
+                <if test="createDate!=null">createDate=#{createDate} and</if>
+                <if test="beginDate!=null">beginDate=#{beginDate} and</if>
+                <if test="endDate!=null">endDate=#{endDate} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="isCollect!=null">isCollect=#{isCollect} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+            </where>
+        </trim>
+		order by theID desc
+	</select>
+	
+	<select id="queryOpinionPollListByBean" parameterType="OpinionPoll" resultType="OpinionPoll">
+		SELECT * FROM T_OpinionPoll
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="userID!=null">userID=#{userID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="summary!=null">summary=#{summary} and</if>
+                <if test="createDate!=null">createDate=#{createDate} and</if>
+                <if test="beginDate!=null">beginDate=#{beginDate} and</if>
+                <if test="endDate!=null">endDate=#{endDate} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="isCollect!=null">isCollect=#{isCollect} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+            </where>
+        </trim>
+        order by theID desc
+	</select>
+
+    <select id="queryAllOpinionPollList" resultType="OpinionPoll">
+        SELECT * FROM T_OpinionPoll order by theID desc
+    </select>
+
+    <insert id="insertOpinionPoll" parameterType="OpinionPoll">
+    	<selectKey resultType="int" order="AFTER" keyProperty="theID">
+			SELECT @@IDENTITY AS theID
+		</selectKey>
+		insert into T_OpinionPoll
+		(userID,title,summary,createDate,beginDate,endDate,status,isCollect,releaseDate)
+		values
+		(#{userID},#{title},#{summary},#{createDate},#{beginDate},#{endDate},#{status},#{isCollect},#{releaseDate})
+	</insert>
+
+    <update id="updateOpinionPoll" parameterType="OpinionPoll">
+		update T_OpinionPoll set
+        <trim suffixOverrides=",">
+			<if test="userID!=null">userID=#{userID} ,</if>
+            <if test="title!=null">title=#{title} ,</if>
+            <if test="summary!=null">summary=#{summary} ,</if>
+            <if test="createDate!=null">createDate=#{createDate} ,</if>
+            <if test="beginDate!=null">beginDate=#{beginDate} ,</if>
+            <if test="endDate!=null">endDate=#{endDate} ,</if>
+            <if test="status!=null">status=#{status} ,</if>
+            <if test="isCollect!=null">isCollect=#{isCollect} ,</if>
+            <if test="releaseDate!=null">releaseDate=#{releaseDate} ,</if>
+        </trim>
+        <where>theID=#{theID}</where>
+	</update>
+
+    <delete id="deleteOpinionPoll" parameterType="Integer">
+        delete T_OpinionPoll where theID = #{theID}
+    </delete>
+    
+    <select id="getOpinionPollListByBean" parameterType="AllClassBean" resultType="AllClassBean">
+        SELECT * FROM T_OpinionPoll 
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="userID!=null">userID=#{userID} and</if>
+                <if test="title!=null">title like '%${title}%' and</if>
+                <if test="summary!=null">summary=#{summary} and</if>
+                <if test="createDate!=null">createDate=#{createDate} and</if>
+                <if test="beginDate!=null">beginDate=#{beginDate} and</if>
+                <if test="endDate!=null">endDate=#{endDate} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="isCollect!=null">isCollect=#{isCollect} and</if>
+                <if test="userID!=null">userID=#{userID} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+            </where>
+        </trim>
+        order by theID desc
+    </select>
+    
+</mapper>

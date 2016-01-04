@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="base_default" extends="struts-default" abstract="true">
+        <interceptors>
+            <interceptor name="userAuthorization" class="com.system.filter.UserInfoInterceptor">
+            </interceptor>
+            <interceptor name="initFrontCatalog" class="com.web.filter.InitFrontCatalog">
+            </interceptor>
+            <interceptor-stack name="userAuthorizationStack">
+                <interceptor-ref name="userAuthorization"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+            <interceptor-stack name="initFrontCatalogStack">
+                <interceptor-ref name="initFrontCatalog"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+            <result name="login">/index.jsp</result>
+            <result name="error">/view/system/error.jsp</result>
+        </global-results>
+    </package>
+
+    <!-- 后台 -->
+    <include file="com/system/action/struts/struts-login.xml"></include>
+    <include file="com/system/action/struts/struts-user.xml"></include>
+    <include file="com/system/action/struts/struts-catalog.xml"></include>
+    <include file="com/system/action/struts/struts-contents.xml"></include>
+    <include file="com/system/action/struts/struts-zlcatalog.xml"></include>
+    <include file="com/system/action/struts/struts-zlcontents.xml"></include>
+    <include file="com/system/action/struts/struts-survey.xml"></include>
+    <include file="com/system/action/struts/struts-surveyInfo.xml"></include>
+    <include file="com/system/action/struts/struts-opencatalog.xml"></include>
+    <include file="com/system/action/struts/struts-opencontents.xml"></include>
+
+    <include file="com/system/action/struts/struts-module.xml"></include>
+    <include file="com/system/action/struts/struts-role.xml"></include>
+    <include file="com/system/action/struts/struts-role-module.xml"></include>
+    <include file="com/system/action/struts/struts-user-role.xml"></include>
+
+    <include file="com/system/action/struts/struts-fileInfo.xml"></include>
+
+    <include file="com/system/action/struts/struts-video.xml"></include>
+    <include file="com/system/action/struts/struts-links.xml"></include>
+
+    <include file="com/system/action/struts/struts-titlepic.xml"></include>
+    <include file="com/system/action/struts/struts-letter.xml"></include>
+
+    <include file="com/system/action/struts/struts-option.xml"></include>
+	<include file="com/system/action/struts/struts-opinionPoll.xml"></include>
+	<include file="com/system/action/struts/struts-opinionPollInfo.xml"></include>
+
+    <include file="com/system/action/struts/struts-permit.xml"></include>
+    
+    <include file="com/system/action/struts/struts-operationLog.xml"></include>
+
+    <!-- web -->
+    <include file="com/web/action/struts/struts-web-index.xml"></include>
+    <include file="com/web/action/struts/struts-web-survey.xml"></include>
+    <include file="com/web/action/struts/struts-web-surveyInfo.xml"></include>
+    <include file="com/web/action/struts/struts-web-areaInfo.xml"></include>
+    <include file="com/web/action/struts/struts-web-conven.xml"></include>
+    <include file="com/web/action/struts/struts-web-letter.xml"></include>
+
+    <include file="com/web/action/struts/struts-web-specialTopic.xml"></include>
+
+    <include file="com/web/action/struts/struts-web-contents.xml"></include>
+    <include file="com/web/action/struts/struts-web-opencatalog.xml"></include>
+    <include file="com/web/action/struts/struts-web-opencontents.xml"></include>
+    <include file="com/web/action/struts/struts-web-zlcatalog.xml"></include>
+    <include file="com/web/action/struts/struts-web-zlcontents.xml"></include>
+    <include file="com/web/action/struts/struts-web-fileInfo.xml"></include>
+</struts>

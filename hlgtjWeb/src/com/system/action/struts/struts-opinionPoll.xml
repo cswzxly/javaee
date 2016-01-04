@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="OpinionPollAction" namespace="/" extends="base_default">
+		<!--  -->
+		<action name="opinionPollPage" class="com.system.action.OpinionPollAction" method="opinionPollPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/opinionPoll/opinionPoll_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+		
+		<action name="opinionPollList" class="com.system.action.OpinionPollAction" method="opinionPollList">
+			<interceptor-ref name="userAuthorizationStack" />
+		</action>
+
+        <action name="newOpinionPollPage" class="com.system.action.OpinionPollAction" method="newOpinionPollPage">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="newOpinionPollPage">/view/system/opinionPoll/newOpinionPollPage.jsp</result>
+        </action>
+        
+        <action name="saveNewOpinionPoll" class="com.system.action.OpinionPollAction" method="saveNewOpinionPoll">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+        <action name="showOpinionPollEdit" class="com.system.action.OpinionPollAction" method="showOpinionPollEdit">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="showOpinionPollEdit">/view/system/opinionPoll/showOpinionPollEdit.jsp</result>
+        </action>
+        <action name="saveEditOpinionPoll" class="com.system.action.OpinionPollAction" method="saveEditOpinionPoll">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="deleteOpinionPoll" class="com.system.action.OpinionPollAction" method="deleteOpinionPoll">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+	</package>
+</struts>

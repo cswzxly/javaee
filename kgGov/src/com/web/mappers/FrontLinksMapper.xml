@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontLinksMapper">
+
+	<resultMap type="Links" id="links">
+		<id property="theID" column="theID" />
+		<result property="title" column="title" />	
+		<result property="link_url" column="link_url" />
+		<result property="pic_url" column="pic_url" />
+		<result property="link_type" column="link_type" />
+		<result property="select_type" column="select_type" />
+		<result property="status" column="status" />	
+        <result property="create_date" column="create_date" />
+        <result property="update_date" column="update_date" />
+        <result property="sort" column="sort" />
+        <result property="catalogID" column="catalogID" />
+        <result property="linkKind" column="linkKind" />
+    </resultMap>
+
+
+	<select id="queryLinksByBean" parameterType="Links" resultType="Links">
+		SELECT * FROM T_Links
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="link_url!=null">link_url=#{link_url} and</if>
+                <if test="pic_url!=null">pic_url=#{pic_url} and</if>
+                <if test="link_type!=null">link_type=#{link_type} and</if>
+                <if test="select_type!=null">select_type=#{select_type} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="create_date!=null">create_date=#{create_date} and</if>
+                <if test="update_date!=null">update_date=#{update_date} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="linkKind!=null">linkKind=#{linkKind} and</if>
+            </where>
+        </trim>
+
+	</select>
+	
+	<select id="queryLinksListByBean" parameterType="Links" resultType="Links">
+		SELECT * FROM T_Links
+        <trim suffixOverrides="and">
+            <where>
+               <if test="theID!=null">theID=#{theID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="link_url!=null">link_url=#{link_url} and</if>
+                <if test="pic_url!=null">pic_url=#{pic_url} and</if>
+                <if test="link_type!=null">link_type=#{link_type} and</if>
+                <if test="select_type!=null">select_type=#{select_type} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="create_date!=null">create_date=#{create_date} and</if>
+                <if test="update_date!=null">update_date=#{update_date} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="linkKind!=null">linkKind=#{linkKind} and</if>
+            </where>
+        </trim>
+	</select>
+
+	<select id="queryTopLinksList" parameterType="Links" resultType="Links">
+		SELECT top ${topNum}* FROM T_Links
+        <trim suffixOverrides="and">
+            <where>
+               <if test="theID!=null">theID=#{theID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="link_url!=null">link_url=#{link_url} and</if>
+                <if test="pic_url!=null">pic_url=#{pic_url} and</if>
+                <if test="link_type!=null">link_type=#{link_type} and</if>
+                <if test="select_type!=null">select_type=#{select_type} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="create_date!=null">create_date=#{create_date} and</if>
+                <if test="update_date!=null">update_date=#{update_date} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="linkKind!=null">linkKind=#{linkKind} and</if>
+            </where>
+        </trim>
+	</select>
+</mapper>

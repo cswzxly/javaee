@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="CatalogAction" namespace="/" extends="base_default">
+		<!--  -->
+		<action name="catalogPage" class="com.system.action.CatalogAction" method="catalogPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/catalog/catalog_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+
+        <action name="catalogShowTree" class="com.system.action.CatalogAction" method="showRee">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="catalogList" class="com.system.action.CatalogAction" method="catalogList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveNewCatalog" class="com.system.action.CatalogAction" method="saveNewCatalog">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveEditCatalog" class="com.system.action.CatalogAction" method="saveEditCatalog">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="deleteCatalog" class="com.system.action.CatalogAction" method="deleteCatalog">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+		<action name="uploaderZtPic" class="com.system.action.CatalogAction" method="uploader">
+			<interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="uploaderZtBanner" class="com.system.action.CatalogAction" method="uploadZtBanner">
+			<interceptor-ref name="userAuthorizationStack" />
+		</action>
+	</package>
+</struts>

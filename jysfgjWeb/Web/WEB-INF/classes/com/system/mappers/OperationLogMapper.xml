@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.OperationLogMapper">
+
+	<resultMap type="OperationLog" id="OperationLog">
+		<id property="theID" column="theID" />
+		<result property="createDate" column="createDate" />
+		<result property="operatorID" column="operatorID" />
+		<result property="operatorName" column="operatorName" />
+        <result property="ipAddress" column="ipAddress" />
+        <result property="catalogID" column="catalogID" />
+        <result property="catalogName" column="catalogName" />
+        <result property="details" column="details" />
+    </resultMap>
+
+
+	<select id="queryOperationLogByBean" parameterType="OperationLog" resultType="OperationLog">
+		SELECT * FROM T_OperationLog
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="createDate!=null">createDate=#{createDate} and</if>
+                <if test="operatorID!=null">operatorID=#{operatorID} and</if>
+                <if test="operatorName!=null">operatorName=#{operatorName} and</if>
+                <if test="ipAddress!=null">ipAddress=#{ipAddress} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="catalogName!=null">catalogName=#{catalogName} and</if>
+                <if test="details!=null">details=#{details} and</if>
+            </where>
+        </trim>
+		order by theID desc
+	</select>
+
+    <select id="countOperationLogByBean" resultType="java.lang.Integer">
+        SELECT count(1) FROM T_OperationLog
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="createDate!=null">createDate=#{createDate} and</if>
+                <if test="operatorID!=null">operatorID=#{operatorID} and</if>
+                <if test="operatorName!=null">operatorName=#{operatorName} and</if>
+                <if test="ipAddress!=null">ipAddress=#{ipAddress} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="catalogName!=null">catalogName=#{catalogName} and</if>
+                <if test="details!=null">details=#{details} and</if>
+            </where>
+        </trim>
+    </select>
+
+    <insert id="insertOperationLog" parameterType="OperationLog">
+		insert into T_OperationLog
+		(createDate,operatorID,operatorName,ipAddress,catalogID,catalogName,details)
+		values
+		(#{createDate},#{operatorID},#{operatorName},#{ipAddress},#{catalogID},#{catalogName},#{details})
+	</insert>
+
+    <update id="updateOperationLog" parameterType="OperationLog">
+		update T_OperationLog set
+        <trim suffixOverrides=",">
+                <if test="createDate!=null">createDate=#{createDate},</if>
+                <if test="operatorID!=null">operatorID=#{operatorID},</if>
+                <if test="operatorName!=null">operatorName=#{operatorName},</if>
+                <if test="ipAddress!=null">ipAddress=#{ipAddress},</if>
+                <if test="catalogID!=null">catalogID=#{catalogID},</if>
+                <if test="catalogName!=null">catalogName=#{catalogName},</if>
+                <if test="details!=null">details=#{details},</if>
+        </trim>
+        <where>theID=#{theID}</where>
+	</update>
+
+    <delete id="deleteOperationLog" parameterType="java.lang.Integer">
+        delete t_OperationLog where theID = #{theID}
+    </delete>
+    
+    <select id="queryOperationLogById" parameterType="java.lang.Integer" resultType="OperationLog">
+        select * from t_OperationLog where theID = #{theID}
+    </select>
+</mapper>

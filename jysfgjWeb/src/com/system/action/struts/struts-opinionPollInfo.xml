@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="OpinionPollInfoAction" namespace="/" extends="base_default">
+		<!--  -->
+		<action name="opinionPollInfoPage" class="com.system.action.OpinionPollInfoAction" method="opinionPollInfoPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="page">/view/system/opinionPollInfo/opinionPollInfoList.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+
+        <action name="showOpinionPollInfo" class="com.system.action.OpinionPollInfoAction" method="showOpinionPollInfo">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="show">/view/system/opinionPollInfo/opinionPollInfoShow.jsp</result>
+        </action>
+        
+        <action name="deleteOpinionPollInfo" class="com.system.action.OpinionPollInfoAction" method="deleteOpinionPollInfo">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+        <action name="opinionPollInfoList" class="com.system.action.OpinionPollInfoAction" method="opinionPollInfoList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+	</package>
+</struts>

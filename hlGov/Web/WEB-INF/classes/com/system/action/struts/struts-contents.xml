@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="ContentsAction" namespace="/" extends="base_default">
+		<!--  -->
+		<action name="contentsPage" class="com.system.action.ContentsAction" method="contentsPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/contents/contents_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+
+        <action name="contentsList" class="com.system.action.ContentsAction" method="contentsList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="newContentsPage" class="com.system.action.ContentsAction" method="newContentsPage">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="list" type="redirectAction">contentsPage.action</result>
+        	<result name="newContentsPage">/view/system/contents/newContentsPage.jsp</result>
+        </action>
+        
+        <action name="saveNewContents" class="com.system.action.ContentsAction" method="saveNewContents">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="showRee" class="com.system.action.ContentsAction" method="showRee">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+        <action name="showContentsEdit" class="com.system.action.ContentsAction" method="showContentsEdit">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="showContentsEdit">/view/system/contents/showContentsEdit.jsp</result>
+        </action>
+        <action name="saveEditContents" class="com.system.action.ContentsAction" method="saveEditContents">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="deleteContents" class="com.system.action.ContentsAction" method="deleteContents">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="checkIsTop" class="com.system.action.ContentsAction" method="checkIsTop">
+			<interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="changeTopNews" class="com.system.action.ContentsAction" method="changeTopNews">
+			<interceptor-ref name="userAuthorizationStack" />
+		</action>
+        <action name="saveKindEditorPic" class="com.system.action.ContentsAction" method="saveKindEditorPic">
+<!--         	<interceptor-ref name="userAuthorizationStack" /> -->
+        	<result name="success">/view/system/contents/newsPic_upload_kindeditor.jsp</result>
+        </action>
+        <action name="saveKindEditorFile" class="com.system.action.ContentsAction" method="saveKindEditorFile">
+<!--         	<interceptor-ref name="userAuthorizationStack" /> -->
+        	<result name="success">/view/system/contents/newsPic_upload_kindeditor.jsp</result>
+        </action>
+	</package>
+</struts>

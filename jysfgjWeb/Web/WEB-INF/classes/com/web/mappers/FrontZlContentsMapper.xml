@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontZlContentsMapper">
+
+	<resultMap type="ZlContents" id="ZlContents">
+		<id property="theID" column="theID" />
+		<result property="catalogID" column="catalogID" />
+		<result property="title" column="title" />		
+        <result property="contents" column="contents" />
+        <result property="creater_pid" column="creater_pid" />
+        <result property="create_date" column="create_date" />
+        <result property="update_pid" column="update_pid" />
+        <result property="update_date" column="update_date" />
+        <result property="source" column="source" />
+        <result property="status" column="status" />
+        <result property="sort" column="sort" />
+        <result property="releaseDate" column="releaseDate"/>
+    </resultMap>
+	
+	<select id="queryTopZlContentsList" parameterType="ZlContents" resultType="ZlContents">
+		SELECT TOP ${topNum}* FROM ZL_CONTENTS
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="creater_pid!=null">creater_pid=#{creater_pid} and</if>
+                <if test="create_date!=null">create_date=#{create_date} and</if>
+                <if test="update_pid!=null">update_pid=#{update_pid} and</if>
+                <if test="update_date!=null">update_date=#{update_date} and</if>
+                <if test="source!=null">source=#{source} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+            </where>
+        </trim>
+        order by releaseDate desc
+	</select>
+	
+	<select id="queryZlContentsList" parameterType="ZlContents" resultType="ZlContents">
+		SELECT t1.* FROM ZL_CONTENTS t1,zl_catalog t2
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">t1.theID=#{theID} and</if>
+                <if test="catalogID!=null">t1.catalogID=#{catalogID} and</if>
+                <if test="title!=null">t1.title=#{title} and</if>
+                <if test="creater_pid!=null">t1.creater_pid=#{creater_pid} and</if>
+                <if test="create_date!=null">t1.create_date=#{create_date} and</if>
+                <if test="update_pid!=null">t1.update_pid=#{update_pid} and</if>
+                <if test="update_date!=null">t1.update_date=#{update_date} and</if>
+                <if test="source!=null">t1.source=#{source} and</if>
+                <if test="status!=null">t1.status=#{status} and</if>
+                <if test="sort!=null">t1.sort=#{sort} and</if>
+                <if test="releaseDate!=null">t1.releaseDate=#{releaseDate} and</if>
+                <if test="catalogPid!=null">t2.parentID=#{catalogPid} and</if>
+            </where>
+        </trim>
+        and t1.catalogID=t2.theID order by t2.sort asc, t1.releaseDate desc,t1.theID desc
+	</select>
+	
+	<select id="queryZlContentsByBean" parameterType="int" resultType="ZlContents">
+		SELECT * FROM ZL_CONTENTS
+        where theID=#{theID}
+	</select>
+
+</mapper>

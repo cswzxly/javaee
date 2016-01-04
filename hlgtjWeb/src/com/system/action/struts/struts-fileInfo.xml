@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+    <package name="FileInfoAction" namespace="/" extends="base_default">
+        <!--  -->
+        <action name="fileInfoPage" class="com.system.action.FileInfoAction" method="fileInfoPage">
+            <interceptor-ref name="userAuthorizationStack"/>
+            <result name="success">/view/system/fileInfo/fileInfo_page.jsp</result>
+            <result name="error">/view/system/error.jsp</result>
+        </action>
+
+
+        <action name="fileInfoList" class="com.system.action.FileInfoAction" method="fileInfoList">
+            <interceptor-ref name="userAuthorizationStack"/>
+        </action>
+        <action name="saveNewFileInfo" class="com.system.action.FileInfoAction" method="saveNewFileInfo">
+            <interceptor-ref name="userAuthorizationStack"/>
+        </action>
+        <action name="saveEditFileInfo" class="com.system.action.FileInfoAction" method="saveEditFileInfo">
+            <interceptor-ref name="userAuthorizationStack"/>
+        </action>
+        <action name="deleteFileInfo" class="com.system.action.FileInfoAction" method="deleteFileInfo">
+            <interceptor-ref name="userAuthorizationStack"/>
+        </action>
+        <action name="uploader" class="com.system.action.FileInfoAction" method="uploader">
+            <interceptor-ref name="userAuthorizationStack"/>
+        </action>
+
+        <action name="checkIndex" class="com.system.action.FileInfoAction" method="checkIndex">
+            <interceptor-ref name="userAuthorizationStack"/>
+        </action>
+        <action name="downloadFile" class="com.system.action.FileInfoAction" method="downloadFile">
+            <interceptor-ref name="userAuthorizationStack"/>
+        </action>
+    </package>
+</struts>

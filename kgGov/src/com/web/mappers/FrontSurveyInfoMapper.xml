@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontSurveyInfoMapper">
+
+	<resultMap type="SurveyInfo" id="SurveyInfo">
+		<id property="theID" column="theID" />
+		<result property="pID" column="pID" />
+		<result property="content" column="content" />
+		<result property="count" column="count" />
+        <result property="status" column="status" />
+        <result property="theDate" column="theDate" />
+        <result property="userID" column="userID" />
+    </resultMap>
+
+
+	<select id="front_querySurveyInfo" resultType="SurveyInfo" parameterType="String">
+		SELECT * FROM T_SURVEYINFO 
+		where pID=#{pID}
+		order by theDate		
+	</select>
+	
+	<select id="front_querySurveyInfoByBean" parameterType="int" resultType="SurveyInfo">
+        SELECT * FROM T_SURVEYINFO 
+        where 
+        theID=#{theID}
+    </select>
+	
+	<update id="front_updateSurveyInfo" parameterType="SurveyInfo">
+		update T_SURVEYINFO 
+		set count=#{count}
+		where
+        theID=#{theID}
+	</update>
+	
+	<!-- <select id="querySurveyInfoByBean" parameterType="int" resultType="SurveyInfo">
+        SELECT * FROM T_SURVEYINFO 
+        where 
+        theID=#{theID}
+    </select>
+	
+	 <insert id="insertSurveyInfo" parameterType="SurveyInfo">
+		insert into T_SURVEYINFO
+		(pID,content,count,status,theDate,userID)
+		values
+		(#{pID},#{content},#{count},#{status},#{theDate},#{userID})
+	</insert>
+	
+	 <update id="updateSurveyInfo" parameterType="SurveyInfo">
+		update T_SURVEYINFO set
+        <trim suffixOverrides=",">
+            <if test="content!=null">content=#{content}, </if>
+            <if test="status!=null">status=#{status}, </if>
+        </trim>
+        <where>theID=#{theID}</where>
+	</update>
+	
+	 <delete id="deleteSurveyInfo" parameterType="SurveyInfo">
+        delete T_SURVEYINFO where theID = #{theID}
+    </delete> -->
+
+</mapper>

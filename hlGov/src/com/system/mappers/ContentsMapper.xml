@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.ContentsMapper">
+
+	<resultMap type="Contents" id="contents">
+		<id property="theID" column="theID" />
+		<result property="catalogID" column="catalogID" />
+		<result property="title" column="title" />		
+        <result property="contents" column="contents" />
+        <result property="creater_pid" column="creater_pid" />
+        <result property="create_date" column="create_date" />
+        <result property="update_pid" column="update_pid" />
+        <result property="update_date" column="update_date" />
+        <result property="source" column="source" />
+        <result property="status" column="status" />
+        <result property="sort" column="sort" />
+        <result property="releaseDate" column="releaseDate"/>
+        <result property="secTitle" column="secTitle"/>
+        <result property="isTop" column="isTop"/>
+        <result property="author" column="author"/>
+        <result property="viewedNum" column="viewedNum"/>
+    </resultMap>
+
+
+	<select id="queryContentsByBean" parameterType="Contents" resultType="Contents">
+		SELECT * FROM T_CONTENTS
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="creater_pid!=null">creater_pid=#{creater_pid} and</if>
+                <if test="create_date!=null">create_date=#{create_date} and</if>
+                <if test="update_pid!=null">update_pid=#{update_pid} and</if>
+                <if test="update_date!=null">update_date=#{update_date} and</if>
+                <if test="source!=null">source=#{source} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+                <if test="secTitle!=null">secTitle=#{secTitle} and</if>
+                <if test="isTop!=null">isTop=#{isTop} and</if>
+                <if test="author!=null">author=#{author} and</if>
+                <if test="viewedNum!=null">viewedNum=#{viewedNum} and</if>
+            </where>
+        </trim>
+
+	</select>
+	
+	<select id="queryContentsListByBean" parameterType="Contents" resultType="Contents">
+		SELECT * FROM T_CONTENTS
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="creater_pid!=null">creater_pid=#{creater_pid} and</if>
+                <if test="create_date!=null">create_date=#{create_date} and</if>
+                <if test="update_pid!=null">update_pid=#{update_pid} and</if>
+                <if test="update_date!=null">update_date=#{update_date} and</if>
+                <if test="source!=null">source=#{source} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+                <if test="secTitle!=null">secTitle=#{secTitle} and</if>
+                <if test="isTop!=null">isTop=#{isTop} and</if>
+                <if test="author!=null">author=#{author} and</if>
+                <if test="viewedNum!=null">viewedNum=#{viewedNum} and</if>
+            </where>
+        </trim>
+	</select>
+
+    <select id="queryAllContentsList" resultType="Contents">
+        SELECT * FROM T_CONTENTS order by sort asc,releaseDate desc
+    </select>
+
+    <insert id="insertContents" parameterType="Contents">
+    	<selectKey resultType="int" order="AFTER" keyProperty="theID">
+			SELECT @@IDENTITY AS theID
+		</selectKey>
+		insert into T_CONTENTS
+		(catalogID,title,contents,creater_pid,create_date,update_pid,update_date,source,status,sort,releaseDate,secTitle,isTop,author,viewedNum)
+		values
+		(#{catalogID},#{title},#{contents},#{creater_pid},#{create_date},#{update_pid},#{update_date},#{source},#{status},#{sort},#{releaseDate},#{secTitle},#{isTop},#{author},0)
+	</insert>
+
+    <update id="updateContents" parameterType="Contents">
+		update T_CONTENTS set
+        <trim suffixOverrides=",">
+              <if test="catalogID!=null">catalogID=#{catalogID} ,</if>
+              <if test="title!=null">title=#{title} ,</if>
+              <if test="contents!=null">contents=#{contents} ,</if>
+              <if test="creater_pid!=null">creater_pid=#{creater_pid} ,</if>
+              <if test="create_date!=null">create_date=#{create_date} ,</if>
+              <if test="update_pid!=null">update_pid=#{update_pid} ,</if>
+              <if test="update_date!=null">update_date=#{update_date} ,</if>
+              <if test="source!=null">source=#{source} ,</if>
+              <if test="status!=null">status=#{status} ,</if>
+              <if test="sort!=null">sort=#{sort} ,</if>
+              <if test="releaseDate!=null">releaseDate=#{releaseDate} ,</if>
+              <if test="secTitle!=null">secTitle=#{secTitle} ,</if>
+              <if test="isTop!=null">isTop=#{isTop} ,</if>
+              <if test="author!=null">author=#{author} ,</if>
+              <if test="viewedNum!=null">viewedNum=#{viewedNum} ,</if>
+        </trim>
+        <where>theID=#{theID}</where>
+	</update>
+
+    <delete id="deleteContents" parameterType="Contents">
+        delete T_CONTENTS where theID = #{theID}
+    </delete>
+    
+    <select id="getContentsListByBean" parameterType="AllClassBean" resultType="AllClassBean">
+        SELECT theID as theID,catalogID as catalogID,title as title,isTop as isTop,releaseDate as releaseDate,
+        source as source,status as status,viewedNum as viewedNum 
+        FROM T_CONTENTS 
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="title!=null">title like '%${title}%' and</if>
+                <if test="creater_pid!=null">creater_pid=#{creater_pid} and</if>
+                <if test="create_date!=null">create_date=#{create_date} and</if>
+                <if test="update_pid!=null">update_pid=#{update_pid} and</if>
+                <if test="update_date!=null">update_date=#{update_date} and</if>
+                <if test="source!=null">source=#{source} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+                <if test="secTitle!=null">secTitle=#{secTitle} and</if>
+                <if test="isTop!=null">isTop=#{isTop} and</if>
+                <if test="author!=null">author=#{author} and</if>
+                <if test="viewedNum!=null">viewedNum=#{viewedNum} and</if>
+            </where>
+        </trim>
+        order by releaseDate desc
+    </select>
+    
+    <select id="queryTopContentsList" parameterType="Contents" resultType="Contents">
+		SELECT top ${topNum}* FROM T_CONTENTS
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="creater_pid!=null">creater_pid=#{creater_pid} and</if>
+                <if test="create_date!=null">create_date=#{create_date} and</if>
+                <if test="update_pid!=null">update_pid=#{update_pid} and</if>
+                <if test="update_date!=null">update_date=#{update_date} and</if>
+                <if test="source!=null">source=#{source} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="releaseDate!=null">releaseDate=#{releaseDate} and</if>
+                <if test="secTitle!=null">secTitle=#{secTitle} and</if>
+                <if test="isTop!=null">isTop=#{isTop} and</if>
+                <if test="author!=null">author=#{author} and</if>
+                <if test="viewedNum!=null">viewedNum=#{viewedNum} and</if>
+            </where>
+        </trim>
+		order by releaseDate desc
+	</select>
+	
+	<update id="updateTopNewsByCatalogID" parameterType="Contents">
+		update T_CONTENTS set
+        <trim suffixOverrides=",">
+              <if test="isTop!=null">isTop=#{isTop} ,</if>
+        </trim>
+        <where>catalogID=#{catalogID}</where>
+	</update>
+	 <select id="queryContentsByIds" parameterType="Contents" resultType="Contents">
+        SELECT
+        <if test="topNum != null">
+            top ${topNum}
+        </if>
+        *
+        FROM T_CONTENTS
+        <where>
+            <if test="ids != null">
+                catalogID in
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+           
+        </where>
+        order by releaseDate desc
+    </select>
+    
+</mapper>

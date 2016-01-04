@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="PermitAction" namespace="/" extends="base_default">
+		<action name="showTree" class="com.system.action.PermitAction" method="showTree">
+			<interceptor-ref name="userAuthorizationStack" />
+		</action>
+
+		<action name="saveTree" class="com.system.action.PermitAction" method="saveTree">
+			<interceptor-ref name="userAuthorizationStack" />
+		</action>
+
+		<action name="getFlag" class="com.system.action.PermitAction" method="getFlag">
+			<interceptor-ref name="userAuthorizationStack" />
+		</action>
+
+		<action name="catalogEdit" class="com.system.action.PermitAction" method="catalogEdit">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/role/roleCatalog_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+	</package>
+</struts>

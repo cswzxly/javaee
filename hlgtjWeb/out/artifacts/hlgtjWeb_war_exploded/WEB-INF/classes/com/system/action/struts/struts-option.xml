@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="OptionAction" namespace="/" extends="base_default">
+		
+        <action name="optionPage" class="com.system.action.OptionAction" method="list">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="list">/view/system/option/optionList.jsp</result>
+        </action>
+        <action name="optionList" class="com.system.action.OptionAction" method="optionList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="deleteOption" class="com.system.action.OptionAction" method="deleteOption">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveNewOption" class="com.system.action.OptionAction" method="saveNewOption">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveEditOption" class="com.system.action.OptionAction" method="saveEditOption">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+	</package>
+</struts>

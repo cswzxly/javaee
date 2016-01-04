@@ -1,0 +1,17 @@
+--添加文章浏览次数字段
+alter table t_contents add viewedNum int;
+--初始文章浏览次数为0
+update t_contents set viewedNum=0;
+--添加视频浏览次数字段
+alter table t_video add viewedNum int;
+--初始视频浏览次数为0
+update t_video set viewedNum=0;
+--添加文件下载次数字段
+alter table t_fileinfo add downloadNum int;
+--初始文件下载次数为0
+update t_fileinfo set downloadNum=0;
+
+alter table t_user add status varchar(2);
+
+
+update t_user set status='1';

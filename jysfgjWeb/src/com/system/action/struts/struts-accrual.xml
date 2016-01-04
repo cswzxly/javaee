@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="AccrualAction" namespace="/" extends="base_default">
+		
+		
+        <action name="newAccrualPage" class="com.system.action.AccrualAction" method="newAccrualPage">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="list" type="redirectAction">contentsPage.action</result>
+        	<result name="newApprovalPage">/view/system/accrual/newApprovalPage.jsp</result>
+        	<result name="newPunishPage">/view/system/accrual/newPunishPage.jsp</result>
+        	<result name="newCompulsoryPage">/view/system/accrual/newCompulsoryPage.jsp</result>
+        	<result name="newLevyPage">/view/system/accrual/newLevyPage.jsp</result>
+        	<result name="newOtherPage">/view/system/accrual/newOtherPage.jsp</result>
+        </action>
+        
+        <action name="saveNewAccrual" class="com.system.action.AccrualAction" method="saveNewAccrual">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="list" type="redirectAction">contentsPage.action?catalogID=${catalogID}</result>
+        </action>
+        
+        <action name="showAccrualEdit" class="com.system.action.AccrualAction" method="showAccrualEdit">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="showApprovalPage">/view/system/accrual/showApprovalPage.jsp</result>
+        	<result name="showPunishPage">/view/system/accrual/showPunishPage.jsp</result>
+        	<result name="showCompulsoryPage">/view/system/accrual/showCompulsoryPage.jsp</result>
+        	<result name="showLevyPage">/view/system/accrual/showLevyPage.jsp</result>
+        	<result name="showOtherPage">/view/system/accrual/showOtherPage.jsp</result>
+
+        </action>
+        <action name="saveEditAccrual" class="com.system.action.AccrualAction" method="saveEditAccrual">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="list" type="redirectAction">contentsPage.action?catalogID=${catalogID}</result>
+        </action>
+        <action name="deleteAccrual" class="com.system.action.AccrualAction" method="deleteAccrual">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+		<action name="batchDeleteAccrual" class="com.system.action.AccrualAction" method="batchDeleteAccrual">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+	</package>
+</struts>

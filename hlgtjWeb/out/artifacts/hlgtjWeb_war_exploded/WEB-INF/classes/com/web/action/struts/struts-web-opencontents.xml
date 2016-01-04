@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="FrontOpenContentsAction" namespace="/web" extends="base_default">
+		<!--  -->
+		<action name="frontOpenContentsRight" class="com.web.action.FrontOpenContentsAction" method="frontOpenContentsRight">
+			<interceptor-ref name="initFrontCatalogStack" />
+			<result name="success">/view/web/open/front_contents_right.jsp</result>
+			<result name="error">/view/web/error.jsp</result>
+		</action>
+		
+		<action name="frontOpenContentsDetail" class="com.web.action.FrontOpenContentsAction" method="frontOpenContentsDetail">
+			<interceptor-ref name="initFrontCatalogStack" />
+			<result name="success">/view/web/open/front_contents_detail.jsp</result>
+			<result name="error">/view/web/error.jsp</result>
+		</action>
+		
+	</package>
+</struts>

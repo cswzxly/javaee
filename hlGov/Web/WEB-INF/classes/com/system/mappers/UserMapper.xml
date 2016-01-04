@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.UserMapper">
+
+	<resultMap type="User" id="User">
+		<id property="id" column="id" />
+		<result property="userName" column="userName" />
+		<result property="password" column="password" />
+		<result property="realName" column="realName" />
+        <result property="createTime" column="createTime" />
+        <result property="status" column="status" />
+    </resultMap>
+
+
+	<select id="queryUserByBean" parameterType="User" resultType="User">
+		SELECT * FROM T_USER
+        <trim suffixOverrides="and">
+            <where>
+                <if test="id!=null">id=#{id} and</if>
+                <if test="userName!=null">userName=#{userName} and</if>
+                <if test="password!=null">password=#{password} and</if>
+                <if test="status!=null">status=#{status} and</if>
+            </where>
+        </trim>
+
+	</select>
+
+    <select id="queryAllUserList" resultType="User">
+        SELECT id,userName,realName,createTime FROM T_USER 
+        where status='1'
+        order by createTime
+    </select>
+
+    <insert id="insertUser" parameterType="User">
+		insert into T_USER
+		(userName,password,realName,createTime,status)
+		values
+		(#{userName},#{password},#{realName},#{createTime},#{status})
+	</insert>
+
+    <update id="updateUser" parameterType="User">
+		update T_USER set
+        <trim suffixOverrides=",">
+            <if test="password!=null">password=#{password}, </if>
+            <if test="realName!=null">realName=#{realName}, </if>
+        </trim>
+        <where>id=#{id}</where>
+	</update>
+	
+	<update id="hideUser">
+        update T_USER set
+        status='0'
+        <where>id=#{id}</where>
+    </update>
+    
+    <select id="countUserByCreatePid" resultType="java.lang.Integer">
+        SELECT COUNT (c.theID)
+        FROM t_user u,t_contents c
+        WHERE c.creater_pid=u.id
+        AND u.id=#{id}
+    </select>
+
+    <delete id="deleteUser" parameterType="User">
+        delete t_user where id = #{id}
+    </delete>
+</mapper>

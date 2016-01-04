@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="OpenCatalogAction" namespace="/" extends="base_default">
+		<!--  -->
+		
+		<action name="openCatalogPage" class="com.system.action.OpenCatalogAction" method="openCatalogPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/opencatalog/open_catalog_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+		
+        <action name="showOpenTree" class="com.system.action.OpenCatalogAction" method="showOpenTree">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="openCatalogList" class="com.system.action.OpenCatalogAction" method="openCatalogList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveNewOpenCatalog" class="com.system.action.OpenCatalogAction" method="saveNewOpenCatalog">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="saveEditOpenCatalog" class="com.system.action.OpenCatalogAction" method="saveEditOpenCatalog">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="deleteOpenCatalog" class="com.system.action.OpenCatalogAction" method="deleteOpenCatalog">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+		<action name="uploader" class="com.system.action.OpenCatalogAction" method="uploader">
+			<interceptor-ref name="userAuthorizationStack" />
+		</action> 
+	</package>
+</struts>

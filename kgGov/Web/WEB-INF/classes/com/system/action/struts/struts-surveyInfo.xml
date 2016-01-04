@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="SurveyInfoAction" namespace="/" extends="base_default">
+		
+		<action name="surveyInfoPage" class="com.system.action.SurveyInfoAction" method="surveyInfoPage">
+		    <interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/survey/surveyInfo_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+		
+		<action name="queryAllSurveyInfoList" class="com.system.action.SurveyInfoAction" method="queryAllSurveyInfoList">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="saveNewSurveyInfo" class="com.system.action.SurveyInfoAction" method="saveNewSurveyInfo">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="saveEditSurveyInfo" class="com.system.action.SurveyInfoAction" method="saveEditSurveyInfo">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="updateSurveyInfo" class="com.system.action.SurveyInfoAction" method="updateSurveyInfo">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+		<action name="deleteSurveyInfo" class="com.system.action.SurveyInfoAction" method="deleteSurveyInfo">
+		    <interceptor-ref name="userAuthorizationStack" />
+		</action>
+
+	</package>
+</struts>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="VideoAction" namespace="/" extends="base_default">
+		
+		
+        <action name="newVideoPage" class="com.system.action.VideoAction" method="newVideoPage">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="newVideoPage">/view/system/video/newVideoPage.jsp</result>
+        </action>
+        
+        <action name="saveVideo" class="com.system.action.VideoAction" method="saveVideo">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="success" type="redirect">/contents/contentsPage.action?catalogID=${catalogID}</result>
+        </action>
+        
+        <action name="deleteVideo" class="com.system.action.VideoAction" method="deleteVideo">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+        <action name="showVideoEdit" class="com.system.action.VideoAction" method="showVideoEdit">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="showVideoEdit">/view/system/video/showVideoEdit.jsp</result>
+        </action>
+        
+        <action name="updateVideo" class="com.system.action.VideoAction" method="updateVideo">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="success" type="redirect">/contents/contentsPage.action?catalogID=${catalogID}</result>
+        </action>
+        
+        <action name="checkVideoIndex" class="com.system.action.VideoAction" method="checkVideoIndex">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="batchDeleteVideo" class="com.system.action.VideoAction" method="batchDeleteVideo">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+	</package>
+</struts>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="ZlContentsAction" namespace="/" extends="base_default">
+		<!--  -->
+		<action name="zlcontentsPage" class="com.system.action.ZlContentsAction" method="zlcontentsPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/zlcontents/zlcontents_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+
+        <action name="zlcontentsList" class="com.system.action.ZlContentsAction" method="zlcontentsList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="zlnewContentsPage" class="com.system.action.ZlContentsAction" method="zlnewContentsPage">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="list" type="redirectAction">zlcontentsPage.action</result>
+        	<result name="newContentsPage">/view/system/zlcontents/zlnewContentsPage.jsp</result>
+        </action>
+        
+        <action name="zlsaveNewContents" class="com.system.action.ZlContentsAction" method="zlsaveNewContents">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="zlshowCatalogTree" class="com.system.action.ZlContentsAction" method="zlshowCatalogTree">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+        <action name="zlshowContentsEdit" class="com.system.action.ZlContentsAction" method="zlshowContentsEdit">
+        	<interceptor-ref name="userAuthorizationStack" />
+        	<result name="showContentsEdit">/view/system/zlcontents/zlshowContentsEdit.jsp</result>
+        </action>
+        <action name="zlsaveEditContents" class="com.system.action.ZlContentsAction" method="zlsaveEditContents">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="zldeleteContents" class="com.system.action.ZlContentsAction" method="zldeleteContents">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        
+	</package>
+</struts>

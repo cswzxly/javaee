@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.OpinionPollInfoMapper">
+
+	<resultMap type="OpinionPollInfo" id="OpinionPollInfo">
+		<id property="theID" column="theID" />
+		<result property="opinionID" column="opinionID" />
+        <result property="name" column="name" />
+        <result property="createDate" column="createDate" />
+        <result property="phone" column="phone" />
+        <result property="email" column="email"/>
+        <result property="ip" column="ip" />
+        <result property="contents" column="contents" />
+    </resultMap>
+
+
+	<select id="queryOpinionPollInfoByBean" parameterType="OpinionPollInfo" resultType="OpinionPollInfo">
+		SELECT * FROM T_OpinionPollInfo
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="opinionID!=null">opinionID=#{opinionID} and</if>
+                <if test="name!=null">name=#{name} and</if>
+                <if test="createDate!=null">createDate=#{createDate} and</if>
+                <if test="phone!=null">phone=#{phone} and</if>
+                <if test="email!=null">email=#{email} and</if>
+                <if test="ip!=null">ip=#{ip} and</if>
+                <if test="contents!=null">contents=#{contents} and</if>
+            </where>
+        </trim>
+		order by theID desc
+	</select>
+	
+	<select id="queryOpinionPollInfoListByBean" parameterType="OpinionPollInfo" resultType="OpinionPollInfo">
+		SELECT * FROM T_OpinionPollInfo
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="opinionID!=null">opinionID=#{opinionID} and</if>
+                <if test="name!=null">name=#{name} and</if>
+                <if test="createDate!=null">createDate=#{createDate} and</if>
+                <if test="phone!=null">phone=#{phone} and</if>
+                <if test="email!=null">email=#{email} and</if>
+                <if test="ip!=null">ip=#{ip} and</if>
+                <if test="contents!=null">contents=#{contents} and</if>
+            </where>
+        </trim>
+        order by theID desc
+	</select>
+
+    <select id="queryAllOpinionPollInfoList" resultType="OpinionPollInfo">
+        SELECT * FROM T_OpinionPollInfo order by theID desc
+    </select>
+
+    <insert id="insertOpinionPollInfo" parameterType="OpinionPollInfo">
+    	<selectKey resultType="int" order="AFTER" keyProperty="theID">
+			SELECT @@IDENTITY AS theID
+		</selectKey>
+		insert into T_OpinionPollInfo
+		(opinionID,name,createDate,phone,email,ip,contents)
+		values
+		(#{opinionID},#{name},#{createDate},#{phone},#{email},#{ip},#{contents})
+	</insert>
+
+    <update id="updateOpinionPollInfo" parameterType="OpinionPollInfo">
+		update T_OpinionPollInfo set
+        <trim suffixOverrides=",">
+                <if test="opinionID!=null">opinionID=#{opinionID} ,</if>
+                <if test="name!=null">name=#{name} and</if>
+                <if test="createDate!=null">createDate=#{createDate} ,</if>
+                <if test="phone!=null">phone=#{phone} ,</if>
+                <if test="email!=null">email=#{email} ,</if>
+                <if test="ip!=null">ip=#{ip} ,</if>
+                <if test="contents!=null">contents=#{contents} ,</if>
+        </trim>
+        <where>theID=#{theID}</where>
+	</update>
+
+    <delete id="deleteOpinionPollInfo" parameterType="Integer">
+        delete T_OpinionPollInfo where theID = #{theID}
+    </delete>
+    
+    <select id="getOpinionPollInfoListByBean" parameterType="AllClassBean" resultType="AllClassBean">
+        SELECT * FROM T_OpinionPollInfo
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="opinionID!=null">opinionID=#{opinionID} and</if>
+                <if test="name!=null">name=#{name} and</if>
+                <if test="createDate!=null">createDate=#{createDate} and</if>
+                <if test="phone!=null">phone=#{phone} and</if>
+                <if test="email!=null">email=#{email} and</if>
+                <if test="ip!=null">ip=#{ip} and</if>
+                <if test="contents!=null">contents=#{contents} and</if>
+            </where>
+        </trim>
+        order by theID desc
+    </select>
+    
+</mapper>

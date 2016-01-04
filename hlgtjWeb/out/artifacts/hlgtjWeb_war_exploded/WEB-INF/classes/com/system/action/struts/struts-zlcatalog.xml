@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="ZlCatalogAction" namespace="/" extends="base_default">
+		<!--  -->
+		<action name="zlcatalogPage" class="com.system.action.ZlCatalogAction" method="zlCatalogPage">
+			<interceptor-ref name="userAuthorizationStack" />
+			<result name="success">/view/system/zlcatalog/zlcatalog_page.jsp</result>
+			<result name="error">/view/system/error.jsp</result>
+		</action>
+
+        <action name="zlshowCatalogTree" class="com.system.action.ZlCatalogAction" method="zlshowCatalogTree">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action>
+        <action name="zlcatalogList" class="com.system.action.ZlCatalogAction" method="zlcatalogList">
+        	<interceptor-ref name="userAuthorizationStack" />
+        </action> 
+         <action name="zlsaveNewCatalog" class="com.system.action.ZlCatalogAction" method="zlsaveNewCatalog">
+         	<interceptor-ref name="userAuthorizationStack" />
+         </action> 
+         <action name="zlsaveEditCatalog" class="com.system.action.ZlCatalogAction" method="zlsaveEditCatalog"> 
+         	<interceptor-ref name="userAuthorizationStack" />
+         </action>
+         <action name="zldeleteCatalog" class="com.system.action.ZlCatalogAction" method="zldeleteCatalog"> 
+         	<interceptor-ref name="userAuthorizationStack" />
+         </action>
+ 		<action name="zluploader" class="com.system.action.ZlCatalogAction" method="zluploader">
+ 			<interceptor-ref name="userAuthorizationStack" />
+ 		</action> 
+	</package>
+</struts>

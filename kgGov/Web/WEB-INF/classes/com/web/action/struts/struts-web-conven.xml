@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+        "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+    <package name="frontConvenAction" namespace="/web" extends="base_default">
+
+        <action name="convenList" class="com.web.action.FrontConvenAction" method="convenList">
+            <interceptor-ref name="initFrontCatalogStack"/>
+            <result name="convenList">/view/web/frontConven/convenList.jsp</result>
+        </action>
+
+        <action name="contentsShows" class="com.web.action.FrontConvenAction" method="contentsShows">
+            <interceptor-ref name="initFrontCatalogStack"/>
+            <result name="contentsShows">/view/web/frontConven/contentsShows.jsp</result>
+        </action>
+
+    </package>
+</struts>

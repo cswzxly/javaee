@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="FrontSurveyAction" namespace="/web" extends="base_default">
+		
+		<action name="front_queryAllSurveyList" class="com.web.action.FrontSurveyAction" method="front_queryAllSurveyList">
+		<interceptor-ref name="initFrontCatalogStack" />
+		</action>
+		
+		<action name="front_querySurveyListDetail" class="com.web.action.FrontSurveyAction" method="front_querySurveyListDetail">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontSurvey/front_survey_page.jsp</result>
+		</action>
+
+		<action name="front_querySurveyByBean" class="com.web.action.FrontSurveyAction" method="front_querySurveyByBean">
+			<interceptor-ref name="initFrontCatalogStack" />
+		    <result name="success">/view/web/frontSurvey/front_survey_page.jsp</result>
+		</action>
+
+	</package>
+</struts>

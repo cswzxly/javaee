@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontTitlepicMapper">
+
+	<resultMap type="Titlepic" id="Titlepic">
+		<id property="theID" column="theID" />
+		<result property="name" column="name" />
+		<result property="url" column="url" />
+		<result property="linkUrl" column="linkUrl" />
+    </resultMap>
+
+	<select id="queryAllTitlepicList" resultType="Titlepic">
+        SELECT * FROM T_TITLEPIC order by theID 
+    </select>
+    
+	<select id="queryTitlepicByBean" parameterType="Titlepic" resultType="Titlepic">
+        SELECT * FROM T_TITLEPIC 
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="name!=null">name=#{name} and</if>
+                <if test="url!=null">url=#{url} and</if>
+                <if test="linkUrl!=null">linkUrl=#{linkUrl} and</if>
+            </where>
+        </trim>
+        order by theID 
+    </select>
+	
+
+</mapper>

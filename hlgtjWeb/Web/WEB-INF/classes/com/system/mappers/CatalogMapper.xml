@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mappers.CatalogMapper">
+
+    <resultMap type="Catalog" id="catalog">
+        <id property="theID" column="theID"/>
+        <result property="parentID" column="parentID"/>
+        <result property="title" column="title"/>
+        <result property="status" column="status"/>
+        <result property="sort" column="sort"/>
+        <result property="catalogType" column="catalogType"/>
+        <result property="url" column="url"/>
+        <result property="isFirstCatalog" column="isFirstCatalog"/>
+        <result property="isUploadPic" column="isUploadPic"/>
+    </resultMap>
+
+    <select id="queryCatalogByBean" parameterType="Catalog" resultType="Catalog">
+        SELECT * FROM T_CATALOG
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="parentID!=null">parentID=#{parentID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="catalogType!=null">catalogType=#{catalogType} and</if>
+                <if test="url!=null">url=#{url} and</if>
+                <if test="isFirstCatalog!=null">isFirstCatalog=#{isFirstCatalog} and</if>
+                <if test="isUploadPic!=null">isUploadPic=#{isUploadPic} and</if>
+            </where>
+        </trim>
+        order by sort
+    </select>
+
+    <select id="queryCatalogListByBean" parameterType="Catalog" resultType="Catalog">
+        SELECT distinct * FROM T_CATALOG
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="parentID!=null">parentID=#{parentID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="status!=null">status=#{status} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="catalogType!=null">catalogType=#{catalogType} and</if>
+                <if test="url!=null">url=#{url} and</if>
+                <if test="isFirstCatalog!=null">isFirstCatalog=#{isFirstCatalog} and</if>
+                <if test="isUploadPic!=null">isUploadPic=#{isUploadPic} and</if>
+            </where>
+        </trim>
+        order by sort
+    </select>
+
+    <select id="queryAllCatalogList" resultType="Catalog">
+        SELECT * FROM T_CATALOG order by catalogType,sort 
+    </select>
+
+    <select id="queryTopCatalogList" parameterType="Role" resultType="com.system.pojo.Catalog">
+
+    </select>
+
+    <select id="queryByRole" resultType="com.system.pojo.Catalog">
+        SELECT t1.*
+        from t_catalog t1,r_role_catalog t2
+        where t1.theID = t2.catalogID
+        AND t2.roleID = #{id}
+    </select>
+
+    <select id="queryCatalogListByUser" parameterType="User" resultType="com.system.pojo.Catalog">
+        SELECT distinct c.*
+        FROM r_user_role ur,t_role r,r_role_catalog rc,t_catalog c
+        WHERE c.status = '1'
+        AND c.theID = rc.catalogID
+        AND rc.roleID = r.id
+        AND r.id = rc.roleID
+        AND ur.roleId = r.id
+        AND ur.userId = #{id}
+        order by c.sort
+    </select>
+
+    <insert id="insertCatalog" parameterType="Catalog">
+        <selectKey resultType="int" order="AFTER" keyProperty="theID">
+            SELECT @@IDENTITY AS theID
+        </selectKey>
+		insert into T_CATALOG
+		(parentID,title,status,sort,catalogType,url,isFirstCatalog,isUploadPic)
+		values
+		(#{parentID},#{title},#{status},#{sort},#{catalogType},#{url},#{isFirstCatalog},#{isUploadPic})
+	</insert>
+
+    <update id="updateCatalog" parameterType="Catalog">
+        update T_CATALOG set
+        <trim suffixOverrides=",">
+            <if test="parentID!=null">parentID=#{parentID},</if>
+            <if test="title!=null">title=#{title} ,</if>
+            <if test="status!=null">status=#{status} ,</if>
+            <if test="sort!=null">sort=#{sort} ,</if>
+            <if test="catalogType!=null">catalogType=#{catalogType} ,</if>
+            <if test="url!=null">url=#{url} ,</if>
+            <if test="isFirstCatalog!=null">isFirstCatalog=#{isFirstCatalog} ,</if>
+            <if test="isUploadPic!=null">isUploadPic=#{isUploadPic} ,</if>
+        </trim>
+        <where>theID=#{theID}</where>
+    </update>
+
+    <delete id="deleteCatalog" parameterType="Catalog">
+        delete T_CATALOG where theID = #{theID}
+    </delete>
+
+</mapper>

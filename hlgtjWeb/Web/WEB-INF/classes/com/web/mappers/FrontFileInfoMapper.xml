@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mappers.FrontFileInfoMapper">
+
+    <resultMap type="FileInfo" id="fileInfo">
+        <id property="theID" column="theID"/>
+        <result property="contentID" column="contentID"/>
+        <result property="title" column="title"/>
+        <result property="sort" column="sort"/>
+        <result property="fileType" column="fileType"/>
+        <result property="fileUrl" column="fileUrl"/>
+        <result property="isshow" column="isshow"/>
+        <result property="source" column="source"/>
+        <result property="isindex" column="isindex"/>
+    </resultMap>
+
+    <select id="front_fileInfoList" parameterType="FileInfo" resultType="FileInfo">
+        SELECT
+        <if test="topNum != null">TOP ${topNum}</if>
+        * FROM T_FILEINFO
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="contentID!=null">contentID=#{contentID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="fileType!=null">fileType=#{fileType} and</if>
+                <if test="fileUrl!=null">fileUrl=#{fileUrl} and</if>
+                <if test="isshow!=null">isshow=#{isshow} and</if>
+                <if test="source!=null">source=#{source} and</if>
+                <if test="isindex!=null">isindex=#{isindex} and</if>
+                <if test="fileMode!=null">fileMode=#{fileMode} and</if>
+                <if test="catalogID!=null">catalogID=#{catalogID} and</if>
+            </where>
+        </trim>
+        order by sort
+    </select>
+
+    <select id="queryFileInfoByBean" parameterType="FileInfo" resultType="FileInfo">
+        SELECT * FROM T_FILEINFO
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">theID=#{theID} and</if>
+                <if test="contentID!=null">contentID=#{contentID} and</if>
+                <if test="title!=null">title=#{title} and</if>
+                <if test="sort!=null">sort=#{sort} and</if>
+                <if test="fileType!=null">fileType=#{fileType} and</if>
+                <if test="fileUrl!=null">fileUrl=#{fileUrl} and</if>
+                <if test="isshow!=null">isshow=#{isshow} and</if>
+                <if test="source!=null">source=#{source} and</if>
+                <if test="isindex!=null">isindex=#{isindex} and</if>
+            </where>
+        </trim>
+    </select>
+
+    <select id="queryTopFileInfoList" parameterType="FileInfo" resultType="FileInfo">
+        SELECT
+        <if test="topNum != null">
+            top ${topNum}
+        </if>
+        * FROM T_FILEINFO
+        <where>
+            <if test="theID!=null">and theID=#{theID}</if>
+            <if test="contentID!=null">and contentID=#{contentID}</if>
+            <if test="title!=null">and title=#{title}</if>
+            <if test="sort!=null">and sort=#{sort}</if>
+            <if test="fileType!=null">and fileType=#{fileType}</if>
+            <if test="fileUrl!=null">and fileUrl=#{fileUrl}</if>
+            <if test="isshow!=null">and isshow=#{isshow}</if>
+            <if test="source!=null">and source=#{source}</if>
+            <if test="isindex!=null">and isindex=#{isindex}</if>
+            <if test="catalogID!=null">and catalogID=#{catalogID}</if>
+        </where>
+        order by create_date desc
+    </select>
+
+    <select id="queryTopPicIndex" parameterType="AllClassBean" resultType="AllClassBean">
+        select top ${topNum} f.* from t_fileinfo f
+        left join t_contents c on f.contentID=c.theID
+        left join t_catalog ca on c.catalogID=ca.theID
+        <trim suffixOverrides="and">
+            <where>
+                <if test="theID!=null">f.theID=#{theID} and</if>
+                <if test="contentID!=null">f.contentID=#{contentID} and</if>
+                <if test="title!=null">f.title=#{title} and</if>
+                <if test="sort!=null">f.sort=#{sort} and</if>
+                <if test="fileType!=null">f.fileType=#{fileType} and</if>
+                <if test="fileUrl!=null">f.fileUrl=#{fileUrl} and</if>
+                <if test="isshow!=null">f.isshow=#{isshow} and</if>
+                <if test="source!=null">f.source=#{source} and</if>
+                <if test="isindex!=null">f.isindex=#{isindex} and</if>
+                <if test="catalogID!=null">ca.theID=#{catalogID} and</if>
+            </where>
+        </trim>
+        order by theID desc
+    </select>
+
+
+    <select id="queryfileInfoByIds" parameterType="FileInfo" resultType="FileInfo">
+        SELECT
+        <if test="topNum != null">
+            top ${topNum}
+        </if>
+        *
+        FROM T_FILEINFO
+        <where>
+            <if test="ids != null">
+                catalogID in
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="theID!=null">and theID=#{theID}</if>
+            <if test="contentID!=null">and contentID=#{contentID}</if>
+            <if test="title!=null">and title=#{title}</if>
+            <if test="sort!=null">and sort=#{sort}</if>
+            <if test="fileType!=null">and fileType=#{fileType}</if>
+            <if test="fileUrl!=null">and fileUrl=#{fileUrl}</if>
+            <if test="isshow!=null">and isshow=#{isshow}</if>
+            <if test="source!=null">and source=#{source}</if>
+            <if test="isindex!=null">and isindex=#{isindex}</if>
+            <if test="catalogID!=null">and catalogID=#{catalogID}</if>
+        </where>
+        order by create_date desc
+    </select>
+</mapper>
