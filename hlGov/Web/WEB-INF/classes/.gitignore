@@ -5,11 +5,11 @@
 /Web/
 /applicationContext.xml
 /com/
+/doc/
 /log4j.properties
 /mybatis-config.xml
 /mysql.properties
 /struts.properties
 /struts.xml
-/web_index.properties
-/doc/
 /tomcat/
+/web_index.properties
